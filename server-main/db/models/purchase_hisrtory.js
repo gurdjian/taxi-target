@@ -3,33 +3,27 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Range extends Model {
+  class Purchase_history extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Advertisement }) {
-      // define association here
-      this.belongsToMany(Advertisement, {
-        through: 'AdvertisementRange',
-        foreignKey: 'range_id',
-        otherKey: 'advertisement_id'
+    static associate({ AdvertisementRange }) {
+      this.belongsTo(AdvertisementRange, {
+        foreignKey: 'advertisementRange_id',
       });
+
     }
   };
-  Range.init({
-    zone_geo: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
-    price: {
+  Purchase_history.init({
+    advertisementRange_id: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
   }, {
     sequelize,
-    modelName: 'Range',
+    modelName: 'Purchase_history',
   });
-  return Range;
+  return Purchase_history;
 };
