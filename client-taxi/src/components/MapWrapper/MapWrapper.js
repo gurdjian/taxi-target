@@ -15,7 +15,7 @@ const MapWrapper = () => {
     setTimeout(() => {
       dispatch(getPositionSaga());
       // setMapCenter(position);
-    }, 1000)
+    }, 500)
     // setMapZoom(14);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position])
