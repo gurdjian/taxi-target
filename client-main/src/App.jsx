@@ -8,6 +8,7 @@ import SignUp from "./components/SignUp/SignUp";
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { checkAuth } from "./redux/actions/userAction"
+import PersonalCabinet from "./components/PersonalCabinet/PersonalCabinet"
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/signup">
             <SignUp />
           </Route>
+          <Route exact path="/сabinet" component = {PersonalCabinet}/>
         </Switch>
       </Router>
     </div>
