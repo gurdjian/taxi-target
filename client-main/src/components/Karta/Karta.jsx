@@ -11,6 +11,7 @@ import {
   Placemark,
   Rectangle,
   ObjectManager,
+  Polygon,
 } from "react-yandex-maps";
 import style from './karta.module.css'
 import PropTypes from 'prop-types';
@@ -154,7 +155,7 @@ function Karta() {
 
             {/* {coordinates.map(coordinate => <Placemark geometry={coordinate} />)} */}
             {/* <ReactHint events /> */}
-            {koordinaty?.map((el) => <Rectangle data-rh="Add top-level category" geometry={el.geometry} onClick={handleOpen}
+            {/* {koordinaty?.map((el) => <Rectangle data-rh="Add top-level category" geometry={el.geometry} onClick={handleOpen}
               options={{
                 fillColor: '#ffff0022',
                 strokeColor: el.strokeColor,
@@ -167,9 +168,9 @@ function Karta() {
               modules={
                 ['geoObject.addon.hint']
               }
-            ></Rectangle>)}
+            ></Rectangle>)} */}
 
-            {/* <Rectangle
+            <Rectangle
               data-rh="Add top-level category"
               geometry={[
                 [55.66, 37.6],
@@ -189,7 +190,33 @@ function Karta() {
               modules={
                 ['geoObject.addon.balloon', 'geoObject.addon.hint']
               }
-            /> */}
+            />
+            <Polygon
+              data-rh="Add top-level category"
+              geometry={[
+                [55.75, 37.80],
+                [55.80, 37.90],
+                [55.75, 38.00],
+                [55.70, 38.00],
+                [55.70, 37.80]
+              ]
+              }
+              onClick={handleOpen}
+              options={{
+                fillColor: '#ffff0022',
+                strokeColor: '#3caa3c88',
+                strokeWidth: 7,
+
+              }}
+              properties={{
+                balloonContent: 'Это балун',
+                hintContent: ' Sexy '
+              }}
+              modules={
+                ['geoObject.addon.balloon', 'geoObject.addon.hint']
+              }
+            >
+            </Polygon>
 
           </Map>
         </div>
@@ -265,7 +292,7 @@ function Karta() {
 
       </div>
 
-    </YMaps>
+    </YMaps >
   )
 }
 

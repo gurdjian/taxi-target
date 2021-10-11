@@ -1,6 +1,7 @@
 require('dotenv').config();
 const router = require('express').Router();
 const passport = require('passport');
+const { v4: uuidv4 } = require('uuid');
 const { User } = require('../db/models');
 
 router.get('/main', async (req, res) => {
@@ -43,11 +44,11 @@ router.get('/checkAuth', async (req, res) => {
       if (req?.user.emails[0].value === findUser?.email) {
         return res.json(findUser);
       }
+      console.log(req.user);
       const newUser = await User.create({
-        email: req.user.emails[0].value,
-        firstname: req.user.name.givenName,
-        lastname: req.user.name.familyName,
-        avatar: req.user.photos[0].value,
+        email: req?.user.emails[0].value,
+        name: req?.user.name.givenName,
+        password: uuidv4()
       });
       return res.json(newUser);
     } catch (error) {

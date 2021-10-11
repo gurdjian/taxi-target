@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUpUser } from '../../redux/actions/userAction';
+import { googleCheckAuth, signUpUser } from '../../redux/actions/userAction';
 import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,9 +35,14 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp() {
 
+  const checkHandler = () => {
+    dispatch(googleCheckAuth())
+  }
+
   const loginWithGoogle = (e) => {
     e.preventDefault();
     window.open(`${process.env.REACT_APP_URL}/googleUser/signIn`, '_self')
+
   }
 
   const dispatch = useDispatch();
@@ -129,7 +134,7 @@ function SignUp() {
           >
             Зарегистрироваться
           </Button>
-          <Button
+          {/* <Button
             onClick={loginWithGoogle}
             type="submit"
             fullWidth
@@ -139,7 +144,12 @@ function SignUp() {
           >
             Авторизируйтесь через google
 
-          </Button>
+          </Button> */}
+          <a href={`${process.env.REACT_APP_URL}/googleUser/signIn`}>
+            {/* onClick={loginWithGoogle} */}
+          Авторизируйтесь через google
+
+          </a>
         </form>
       </div>
       <Box mt={5}>

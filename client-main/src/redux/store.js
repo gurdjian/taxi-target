@@ -6,5 +6,9 @@ import rootReducer from "./reducers/rootReducer";
 
 const store = createStore(rootReducer, initState, composeWithDevTools(applyMiddleware(thunk)))
 
+store.subscribe(() => {
+  window.localStorage.setItem('redux', JSON.stringify(store.getState()))
+})
+
 export default store
 
