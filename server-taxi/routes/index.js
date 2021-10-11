@@ -37,7 +37,6 @@ router.get('/current', async (req, res) => {
   });
 });
 
-
 router.get('/start', async (req, res) => {
   // eslint-disable-next-line no-undef
   req.app.locals.traektoria.startRoute();
