@@ -12,7 +12,7 @@ function* getUrlWorker(action) {
  
   try {
     const ads = yield call(getUrl);
-    console.log('getUrlWorker url', ads);
+    // console.log('getUrlWorker url', ads);
     yield put({
       type: UPDATE_IMG,
       payload: ads,

@@ -6,16 +6,15 @@ import {updateUrlSaga} from '../../redux/actions/sagaActions'
 function ImgWrapper() {
   const ads = useSelector( state => state.ads);
   const dispatch = useDispatch();
-  console.log(`===> render ${Date.now()}. ads = ${JSON.stringify(ads)} ads.duration = ${ads.duration}`);   
-
+  // console.log(`===> render ${Date.now()}. ads = ${JSON.stringify(ads)} ads.duration = ${ads.duration}`);   
   useEffect(() => {
-      console.log(`===> useEffect2 ${new Date()}`, 'ads.duration = ', ads.duration * 1000);
+      // console.log(`===> useEffect2 ${new Date()}`, 'ads.duration = ', ads.duration * 1000);
       if (ads.duration > 0) {
         const timerId = setTimeout( () => {
-          console.log(`===> timer1 ${Date.now()}`, 'ads.duration = ', ads.duration * 1000, `timerId= ${timerId}`);
+          // console.log(`===> timer1 ${Date.now()}`, 'ads.duration = ', ads.duration * 1000, `timerId= ${timerId}`);
           dispatch(updateUrlSaga());
           clearTimeout(timerId)
-        }, ads.duration  * 1000)
+        }, ads.duration  * 5000)
       }
     }
   , [ads])

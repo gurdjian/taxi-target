@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo, useEffect,  } from 'react';
+import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -7,7 +7,7 @@ import ImgWrapper from '../ImgWrapper/ImgWrapper';
 import MapWrapper from '../MapWrapper/MapWrapper';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { startRouting } from '../../redux/actions/sagaActions';
+import { startRouting, stopRouting } from '../../redux/actions/sagaActions';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,6 +27,13 @@ function Main() {
   const startHadler = (e) => {
    
     dispatch(startRouting());
+    // const tId = setTimeout( () => {
+    //   myMap.geoObjects.add( elem );
+    // }, stepDuration * index )
+  }
+  const stopHadler = (e) => {
+   
+    dispatch(stopRouting());
     // const tId = setTimeout( () => {
     //   myMap.geoObjects.add( elem );
     // }, stepDuration * index )
@@ -56,7 +63,10 @@ function Main() {
         </Grid>
       </div>
       <Button onClick={startHadler} variant="contained" color="primary">
-        Start
+        START
+      </Button> {'\t'}
+      <Button onClick={stopHadler} variant="contained" color="primary">
+        STOP
       </Button>
     </>
   );
