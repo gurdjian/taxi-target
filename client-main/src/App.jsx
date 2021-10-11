@@ -5,8 +5,17 @@ import History from './components/History/History'
 import Navbar from './components/NavBar/Navbar'
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { checkAuth } from "./redux/actions/userAction"
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth())
+  }, [])
   return (
     <div>
       <Router>
@@ -18,10 +27,10 @@ function App() {
           <Route exact path="/history">
             <History />
           </Route>
-          <Route exact path="/signIn">
+          <Route exact path="/signin">
             <SignIn />
           </Route>
-          <Route exact path="/signUp">
+          <Route exact path="/signup">
             <SignUp />
           </Route>
         </Switch>

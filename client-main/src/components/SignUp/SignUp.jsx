@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,6 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import Container from '@material-ui/core/Container';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUpUser } from '../../redux/actions/userAction';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,12 +25,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(1, 0, 2),
+    margin: theme.spacing(3, 0, 2),
   },
   avatar: {
     backgroundColor: '#0066CC'
   }
 }));
+
+
+
+
 
 // function onSignIn(googleUser) {
 //   // Useful data for your client-side scripts:
@@ -45,6 +52,34 @@ const useStyles = makeStyles((theme) => ({
 // }
 
 function SignUp() {
+  const loginWithGoogle = (e) => {
+e.preventDefault();
+window.open(`${process.env.REACT_APP_URL}/googleUser/signIn`, '_self')
+  }
+
+  const dispatch = useDispatch();
+
+  const [form, setForm] = useState({})
+
+  console.log(form);
+
+  const changeHandler = (e) => {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const history = useHistory()
+  const user = useSelector(state => state.user)
+
+  useEffect(() => {
+    if (user) {
+      history.push('/')
+    }
+  }, [user])
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(signUpUser(form))
+  }
 
   const classes = useStyles();
 
@@ -58,33 +93,26 @@ function SignUp() {
         <Typography component="h1" variant="h5">
           Зарегистрироваться
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={submitHandler}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
+                onChange={changeHandler}
+                value={form.login || ""}
                 autoComplete="fname"
-                name="firstName"
+                name="login"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="login"
+                label="Name"
                 autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={changeHandler}
+                value={form.email || ''}
                 variant="outlined"
                 required
                 fullWidth
@@ -96,6 +124,8 @@ function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={changeHandler}
+                alue={form.password || ''}
                 variant="outlined"
                 required
                 fullWidth
@@ -117,6 +147,7 @@ function SignUp() {
             Зарегистрироваться
           </Button>
           <Button
+            onClick={loginWithGoogle}
             type="submit"
             fullWidth
             variant="contained"
@@ -124,7 +155,6 @@ function SignUp() {
             className={classes.submit}
           >
             Авторизируйтесь через google
-            <div className="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 
           </Button>
         </form>

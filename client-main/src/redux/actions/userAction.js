@@ -3,12 +3,13 @@ import { SET_USER } from '../types';
 const url = process.env.REACT_APP_URL;
 
 export const signUpUser = (value) => async (dispatch) => {
-  const response = await axios.post(`${url}/user/signup`, value)
+  const response = await axios.post(`${url}/user/signup`,  value )
+  console.log('23456');
   dispatch({ type: SET_USER, payload: response.data })
 }
 
 export const signInUser = (value) => async (dispatch) => {
-  const response = await axios.post(`${url}/user/signin`, value)
+  const response = await axios.post(`${url}/user/signin`,  value )
   dispatch({ type: SET_USER, payload: response.data })
 }
 

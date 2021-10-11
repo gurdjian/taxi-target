@@ -1,18 +1,21 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Advertisements', {
+    await queryInterface.createTable('Purchase_hisrtories', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      url: {
-        type: Sequelize.STRING
-      },
-      time: {
-        type: Sequelize.INTEGER
+      advertisementRange_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'AdvertisementRanges',
+          key: 'id'
+        },
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,
@@ -25,6 +28,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Advertisements');
+    await queryInterface.dropTable('Purchase_hisrtories');
   }
 };
