@@ -63,7 +63,7 @@ function Navbar() {
               Taxi-target
       </Typography>
             <Link className={style.super_puper_link} to="/signin"><Button color="inherit">Войти</Button></Link>
-            <Link className={style.super_puper_link} to="/signup"><Button color="inherit">Зарегистрироваться</Button></Link>
+            <Link style={{ textDecoration: 'none', color: 'white' }} to="/signup"><Button color="inherit">Зарегистрироваться</Button></Link>
           </Toolbar>
         }
       </AppBar>
