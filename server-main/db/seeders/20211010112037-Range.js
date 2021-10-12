@@ -6,11 +6,13 @@ module.exports = {
     let range = await fs.readFile(path.join(__dirname, '../', 'range.geojson'), 'utf-8');
     range = JSON.parse(range);
     range = range.features;
+    console.log(range[2].geometry.coordinates);
     const arrToDb = [];
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < range.length; i++) {
       const zone_geo = range[i].geometry.coordinates[0].map((elem) => [elem[1], elem[0]]);
       arrToDb.push({
+        id: i + 1,
         zone_geo: JSON.stringify(zone_geo),
         price: +range[i].properties.description.replace(' р/с', ''),
       });

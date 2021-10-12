@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import { googleCheckAuth, signUpUser } from '../../redux/actions/userAction';
+import { signUpUser } from '../../redux/actions/userAction';
 import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,9 +35,9 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp() {
 
-  const checkHandler = () => {
-    dispatch(googleCheckAuth())
-  }
+  // const checkHandler = () => {
+  //   dispatch(googleCheckAuth())
+  // }
 
   const loginWithGoogle = (e) => {
     e.preventDefault();
@@ -62,6 +62,7 @@ function SignUp() {
     if (user) {
       history.push('/')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   const submitHandler = (e) => {

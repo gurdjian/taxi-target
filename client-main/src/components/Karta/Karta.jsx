@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import "react-hint/css/index.css";
 import {
   YMaps,
   Map,
-  Clusterer,
-  FullscreenControl,
-  SearchControl,
-  Placemark,
-  Rectangle,
-  ObjectManager,
   Polygon,
 } from "react-yandex-maps";
 import style from './karta.module.css'
@@ -17,11 +11,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring';
-import ReactHintFactory from 'react-hint'
+// import ReactHintFactory from 'react-hint'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllRange } from '../../redux/actions/rangeAction';
 import { Button, TextField } from '@material-ui/core';
-const ReactHint = ReactHintFactory(React)
+// const ReactHint = ReactHintFactory(React)
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -96,28 +90,29 @@ function Karta() {
 
   useEffect(() => {
     dispatch(getAllRange())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const [drag, setDrag] = useState(false);
+  // const [drag, setDrag] = useState(false);
 
-  const dragStartHandler = (e) => {
-    e.preventDefault();
-    setDrag(true);
-  }
+  // const dragStartHandler = (e) => {
+  //   e.preventDefault();
+  //   setDrag(true);
+  // }
 
-  const dragLeaveHandler = (e) => {
-    e.preventDefault();
-    setDrag(false);
-  }
+  // const dragLeaveHandler = (e) => {
+  //   e.preventDefault();
+  //   setDrag(false);
+  // }
 
-  const onDropHandler = (e) => {
-    e.preventDefault();
-    let files = [...e.dataTransfer.files]
-    console.log(files);
-    const formData = new FormData();
-    formData.append('file', files[0])
-    setDrag(false)
-  }
+  // const onDropHandler = (e) => {
+  //   e.preventDefault();
+  //   let files = [...e.dataTransfer.files]
+  //   console.log(files);
+  //   const formData = new FormData();
+  //   formData.append('file', files[0])
+  //   setDrag(false)
+  // }
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);

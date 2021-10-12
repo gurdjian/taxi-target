@@ -18,6 +18,10 @@ async function getCurrentPolygon(curCoord) {
     const result = geolib.isPointInPolygon(curCoordObj, zoneGeo);
     return result;
   });
+  // Логирование id зон
+  // if (polygonsArr.length > 0) {
+  //   fs.appendFileSync('./ranges.json', (`${polygonsArr.map((elem) => elem.id).join(',')}\n`));
+  // }
   return polygonsArr;
 }
 router.get('/', (req, res) => {
@@ -30,6 +34,7 @@ router.get('/', (req, res) => {
 router.get('/current', async (req, res) => {
   const polygonsArr = await getCurrentPolygon(req.app.locals.traektoria.getCurrentCoordinate());
   // eslint-disable-next-line no-undef
+
   res.json({
     ranges: polygonsArr.map((elem) => JSON.parse(elem.zone_geo)),
     position: req.app.locals.traektoria.getCurrentCoordinate(),

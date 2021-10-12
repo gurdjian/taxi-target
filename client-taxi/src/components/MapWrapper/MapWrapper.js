@@ -35,7 +35,7 @@ const MapWrapper = () => {
   return (
   <YMaps>
     {/* state={{ center: [55.75, 37.57], zoom: 10 }} */}
-    <Map defaultState={{ center: [55.75, 37.57], zoom: 10 }} style={({width: '99%', height: '80vh'})}>
+    <Map defaultState={{ center: [55.75, 37.62], zoom: 10 }} style={({width: '99%', height: '75vh'})}>
       <Placemark geometry={position} options={({preset: 'islands#yellowAutoCircleIcon'})}/>
       {rangesPolygon}
     </Map>

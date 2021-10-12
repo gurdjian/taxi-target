@@ -14,5 +14,4 @@ router.post('/wallet', async (req, res) => {
   }
 });
 
-
 module.exports = router;

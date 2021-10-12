@@ -42,7 +42,7 @@ function* stopRoutingWorker(action) {
  
   try {
     
-    const { position, ranges } = yield call(stopRouting);
+    const { position } = yield call(stopRouting);
     yield all ([
       put({
         type: SET_RANGES,

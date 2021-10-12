@@ -17,6 +17,7 @@ export default function Deposits() {
   const wallet = useSelector( state => state.wallet )
   useEffect(()=> {
     dispatch(getWalletAction())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric' };
 

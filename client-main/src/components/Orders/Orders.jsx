@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,31 +6,35 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 const rows = [
-  
+  {
+    id: 1,
+    date: '-',
+    name: '-',
+    amount: '-',
+  }
 ]
 export default function Orders() {
-  
+  useEffect(() => {
+
+  }, [])
   return (
     <React.Fragment>
-      {/* <Title>Recent Orders</Title> */}
       <Table size="small">
         <TableHead>
           <TableRow>
+            <TableCell>№</TableCell>
             <TableCell>Дата и время</TableCell>
-            <TableCell>Фигура</TableCell>
-            <TableCell></TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell>Номер фигуры</TableCell>
+            <TableCell align="right">Стоимость</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, index) => (
             <TableRow key={row.id}>
+              <TableCell>{index + 1}</TableCell>
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
+              <TableCell align="right">{row.amount}</TableCell>              
             </TableRow>
           ))}
         </TableBody>

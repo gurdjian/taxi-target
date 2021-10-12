@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import ImgWrapper from '../ImgWrapper/ImgWrapper';
 import MapWrapper from '../MapWrapper/MapWrapper';
@@ -19,6 +19,28 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  marginAutoContainer: {
+    width: 500,
+    height: 80,
+    display: 'flex',
+    backgroundColor: 'gold',
+  },
+  marginAutoItem: {
+    margin: 'auto'
+  },
+  alignItemsAndJustifyContent: {
+    width: 500,
+    height: 80,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'pink',
+  },
+  elbrusfamily: {
+    fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
+    font: '#4520ab',
+
+  }
 }));
 
 
@@ -45,10 +67,17 @@ function Main() {
     <>
       <div className={classes.root} >
         <Grid container spacing={0}>
-          <Grid item xs={6}>
+          <Grid item xs={3}>
             <Grid container spacing={1}>
-              <Grid item xs>
-                <Paper className={classes.paper}>{Date()}</Paper>
+              <Grid item center xs>
+              <Box
+                display="flex" 
+                bgcolor="white"
+              >
+                <Box m="auto">
+               <h1 className={classes.elbrusfamily}>Elbrus Navigator</h1>
+                </Box>
+              </Box>
               </Grid>
             </Grid>
             <Grid container spacing={1}>
@@ -57,7 +86,7 @@ function Main() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={9}>
             <ImgWrapper />
           </Grid>
         </Grid>

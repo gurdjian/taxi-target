@@ -55,6 +55,7 @@ function SignIn() {
       if (user) {
         history.push('/')
       }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     const submitHandler = (e) => {
