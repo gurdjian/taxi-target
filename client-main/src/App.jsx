@@ -16,8 +16,7 @@ function App() {
 
   useEffect(() => {
     dispatch(googleCheckAuth())
-    console.log("YA V EFFEKTE", user);
-    // dispatch(checkAuth())
+    dispatch(checkAuth())
   }, [])
 
   return (

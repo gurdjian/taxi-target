@@ -134,7 +134,7 @@ function SignUp() {
           >
             Зарегистрироваться
           </Button>
-          {/* <Button
+          <Button
             onClick={loginWithGoogle}
             type="submit"
             fullWidth
@@ -144,17 +144,12 @@ function SignUp() {
           >
             Авторизируйтесь через google
 
-          </Button> */}
-          <a href={`${process.env.REACT_APP_URL}/googleUser/signIn`}>
-            {/* onClick={loginWithGoogle} */}
-          Авторизируйтесь через google
-
-          </a>
+          </Button> 
         </form>
       </div>
       <Box mt={5}>
       </Box>
-    </Container>
+    </Container >
   );
 }
 
