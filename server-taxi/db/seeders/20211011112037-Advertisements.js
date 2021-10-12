@@ -12,7 +12,7 @@ module.exports = {
     const arrToDb = [];
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < ads.length; i++) {
-      const { id, url, duration} = ads;
+      const { id, url, duration } = ads;
       arrToDb.push({
         id,
         user_id: 2,

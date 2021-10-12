@@ -187,7 +187,7 @@ export default function Dashboard() {
             </Grid>
           </Grid>
           <Box pt={4}>
-            <Copyright />
+           
           </Box>
         </Container>
       </main>

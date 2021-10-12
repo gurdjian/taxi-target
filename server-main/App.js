@@ -52,27 +52,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(multer({ dest: 'uploads' }).single('filedata'));
 
+//Здесь подключаем роуты
 const uploadsRouter = require('./routes/uploadsRouter');
-
-
-
+const userRouter = require('./routes/userRouter')
+const googleUserRouter = require('./routes/googleUserRouter')
+const depositsUserRouter = require('./routes/depositsUserRouter')
 
 app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.use('/upload', uploadsRouter);
-
-const userRouter = require('./routes/userRouter')
-const googleUserRouter = require('./routes/googleUserRouter')
-
 passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((user, done) => done(null, user))
-
-console.log(process.env.ORIGIN);
-
-
-
 
 passport.use(
   new GoogleStrategy(
@@ -87,9 +78,12 @@ passport.use(
     }
   )
 )
+//Здесь прописываем роуты
 app.use('/user', userRouter)
 app.use('/googleUser', googleUserRouter)
+app.use('/upload', uploadsRouter);
+app.use('/deposits', depositsUserRouter);
 
 app.listen(PORT, () => {
-  console.log('Server start on port', PORT);
+  console.log('Server-main start on port', PORT);
 });
