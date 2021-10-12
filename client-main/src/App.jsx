@@ -7,16 +7,20 @@ import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
-import { checkAuth } from "./redux/actions/userAction"
 import PersonalCabinet from "./components/PersonalCabinet/PersonalCabinet"
+import { checkAuth, googleCheckAuth } from "./redux/actions/userAction"
 
 function App() {
 
   const dispatch = useDispatch();
+  // const user = useSelector(state => state.user)
 
   useEffect(() => {
+    dispatch(googleCheckAuth())
     dispatch(checkAuth())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
   return (
     <div>
       <Router>

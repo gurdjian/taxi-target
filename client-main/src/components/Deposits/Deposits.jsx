@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { useDispatch, useSelector } from "react-redux"
+import { getWalletAction } from "../../redux/actions/cabinetAction";
 // import Title from './Title';
 
 
@@ -11,16 +13,23 @@ const useStyles = makeStyles({
 });
 
 export default function Deposits() {
-  
+  const dispatch = useDispatch();
+  const wallet = useSelector( state => state.wallet )
+  useEffect(()=> {
+    dispatch(getWalletAction())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric' };
+
   const classes = useStyles();
   return (
     <React.Fragment>
-      <p>Recent Deposits</p>
+      <p>Баланс:</p>
       <Typography component="p" variant="h4">  	
-        &#8381;3,024.00
+        &#8381;{wallet}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2019
+        {(new Date()).toLocaleString('ru-Ru',options)}
       </Typography>
     </React.Fragment>
   );

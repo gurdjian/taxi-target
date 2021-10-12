@@ -15,8 +15,7 @@ module.exports = {
       email: 'bmuhatr@jdbhs.com',
       password: 'jndfdn',
       name: 'John Doe',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      wallet: 500,
 
     }], {})
   },

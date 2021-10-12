@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { SET_USER } from '../types';
+import { SET_USER, SET_NEW_USER } from '../types';
 const url = 'http://localhost:3001';
 
 export const signUpUser = (value) => async (dispatch) => {
-  console.log('23456');
-  console.log(url);
+  
   // const response = await axios.post(`${url}/user/signup`,  value )
   const response = await axios({
     method: 'POST',
@@ -16,7 +15,7 @@ export const signUpUser = (value) => async (dispatch) => {
 }
 
 export const signInUser = (value) => async (dispatch) => {
-  const response = await axios.post(`${url}/user/signin`,  value )
+  const response = await axios.post(`${url}/user/signin`, value)
   dispatch({ type: SET_USER, payload: response.data })
 }
 
@@ -26,6 +25,18 @@ export const checkAuth = () => async (dispatch) => {
     dispatch({ type: SET_USER, payload: response.data })
   } catch (err) {
     console.log(err);
+  }
+}
+
+export const googleCheckAuth = () => async (dispatch) => {
+  try {
+    const response = await axios.get(`${url}/googleUser/checkAuth`, { withCredentials: true })
+    console.log('pipa', response.data);
+    // const newUser = response.data
+    dispatch({ type: SET_NEW_USER, payload: response.data })
+    // console.log(newUser);
+  } catch (err) {
+    console.log(err.message);
   }
 }
 

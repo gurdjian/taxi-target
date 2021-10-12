@@ -1,7 +1,8 @@
 const initState = {
   user: null,
-  deposits: 0,
-  
+  wallet: 0,
+  cabinet: {},
+  range:[],
 }
 
 export default initState

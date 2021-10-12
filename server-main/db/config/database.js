@@ -1,4 +1,4 @@
-module.exports = {
+ module.exports = {
   "development": {
     "username": process.env.DBUSER,
     "password": process.env.PASSWORD,
@@ -7,17 +7,17 @@ module.exports = {
     "dialect": "postgres"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
+    "username": process.env.DBUSER,
+    "password": process.env.PASSWORD,
+    "database": process.env.DATABASE,
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
+    "username": process.env.DBUSER,
+    "password": process.env.PASSWORD,
+    "database": process.env.DATABASE,
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   }
 }

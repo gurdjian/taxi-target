@@ -32,10 +32,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
 function SignUp() {
+
+  // const checkHandler = () => {
+  //   dispatch(googleCheckAuth())
+  // }
+
   const loginWithGoogle = (e) => {
-e.preventDefault();
-window.open(`${process.env.REACT_APP_URL}/googleUser/signIn`, '_self')
+    e.preventDefault();
+    window.open(`${process.env.REACT_APP_URL}/googleUser/signIn`, '_self')
+
   }
 
   const dispatch = useDispatch();
@@ -55,6 +62,7 @@ window.open(`${process.env.REACT_APP_URL}/googleUser/signIn`, '_self')
     if (user) {
       history.push('/')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   const submitHandler = (e) => {
@@ -137,12 +145,12 @@ window.open(`${process.env.REACT_APP_URL}/googleUser/signIn`, '_self')
           >
             Авторизируйтесь через google
 
-          </Button>
+          </Button> 
         </form>
       </div>
       <Box mt={5}>
       </Box>
-    </Container>
+    </Container >
   );
 }
 
