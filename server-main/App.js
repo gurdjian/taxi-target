@@ -43,6 +43,7 @@ app.use(passport.session(sessionConfig))
 
 //Здесь подключаем роуты
 const uploadsRouter = require('./routes/uploadsRouter');
+const mapRouter = require('./routes/mapRouter');
 const userRouter = require('./routes/userRouter')
 const googleUserRouter = require('./routes/googleUserRouter')
 const depositsUserRouter = require('./routes/depositsUserRouter')
