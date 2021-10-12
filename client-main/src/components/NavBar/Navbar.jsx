@@ -59,7 +59,8 @@ function Navbar() {
             </IconButton>
             <Typography variant="h6" className={classes.title}>
               Taxi-target
-        </Typography>
+          </Typography>
+            <Link className={style.super_puper_link} to="сabinet"><Button color="inherit">Личный кабинет</Button></Link>
             <Link className={style.super_puper_link} to="karta"><Button color="inherit">Карта</Button></Link>
             <Link className={style.super_puper_link} to="history"><Button color="inherit">История</Button></Link>
             <Button onClick={logoutHandler} color="inherit">Выйти</Button>

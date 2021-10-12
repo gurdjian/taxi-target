@@ -27,7 +27,10 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    wallet: {
+      type: DataTypes.INTEGER,
+    },
   }, {
     sequelize,
     modelName: 'User',

@@ -11,6 +11,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       password: {
         type: Sequelize.STRING,
@@ -19,6 +20,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      wallet: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -29,7 +33,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-      },
+      }
    });
     console.log(user);
   },

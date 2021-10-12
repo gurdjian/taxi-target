@@ -1,11 +1,8 @@
 const initState = {
-  user:null,
+  user: null,
+  wallet: 0,
+  cabinet: {},
   range:[],
 }
-
-// const getInitState = () => {
-//   const stateFromLS = JSON.parse(window.localStorage.getItem('redux'))
-//   return stateFromLS ? stateFromLS : initState
-// }
 
 export default initState

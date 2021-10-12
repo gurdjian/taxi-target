@@ -12,6 +12,7 @@ module.exports = {
     for (let i = 0; i < range.length; i++) {
       const zone_geo = range[i].geometry.coordinates[0].map((elem) => [elem[1], elem[0]]);
       arrToDb.push({
+        id: i + 1,
         zone_geo: JSON.stringify(zone_geo),
         price: +range[i].properties.description.replace(' р/с', ''),
       });

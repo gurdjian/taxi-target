@@ -1,10 +1,25 @@
 import axios from 'axios';
+<<<<<<< HEAD
+import { SET_USER } from '../types';
+const url = 'http://localhost:3001';
+
+export const signUpUser = (value) => async (dispatch) => {
+=======
 import { SET_NEW_USER, SET_USER } from '../types';
 const url = process.env.REACT_APP_URL;
 
 export const signUpUser = (value) => async (dispatch) => {
   const response = await axios.post(`${url}/user/signup`, value)
+>>>>>>> 39956f05bc4eea499cb844fa66d9e029954c5c44
   console.log('23456');
+  console.log(url);
+  // const response = await axios.post(`${url}/user/signup`,  value )
+  const response = await axios({
+    method: 'POST',
+    url: `${url}/user/signup`,
+    data: value,
+    withCredentials: true,
+  })
   dispatch({ type: SET_USER, payload: response.data })
 }
 
