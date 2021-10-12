@@ -18,17 +18,38 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth')
 .OAuth2Strategy;
 
+const sessionConfig = {
+  store: new FileStore({ path: './sessions' }),
+  key: 'sid',
+  secret: 'hui',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: false,
+    expires: 24 * 60 * 60e3,
+    httpOnly: false,
+    sameSite: false
+  },
+};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.use(cors({ credentials: true, origin: process.env.ORIGIN, sameSite: false }));
+app.use(session(sessionConfig))
+app.use(passport.initialize())
+app.use(passport.session(sessionConfig))
+
+
+app.use(express.json());
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'hbs');
 
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
-app.use(morgan('dev'));
-app.use(cors());
+
+
 app.use(multer({ dest: 'uploads' }).single('filedata'));
 
 const uploadsRouter = require('./routes/uploadsRouter');
@@ -50,30 +71,8 @@ passport.deserializeUser((user, done) => done(null, user))
 
 console.log(process.env.ORIGIN);
 
-const sessionConfig = {
-  store: new FileStore({ path: './sessions' }),
-  key: 'sid',
-  secret: 'hui',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    httpOnly: false,
-    expires: 24 * 60 * 60e3,
-    httpOnly: false,
-    sameSite: false
-  },
-};
 
 
-app.use(session(sessionConfig))
-app.use(passport.initialize())
-app.use(passport.session(sessionConfig))
-
-
-app.use(cors({ credentials: true, origin: process.env.ORIGIN, sameSite: false }));
-app.use(express.json());
-app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: true }))
 
 passport.use(
   new GoogleStrategy(

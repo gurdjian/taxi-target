@@ -1,5 +1,7 @@
 const initState = {
-  user:null
+  user: null,
+  deposits: 0,
+  
 }
 
 export default initState
