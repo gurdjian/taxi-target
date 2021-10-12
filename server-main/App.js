@@ -44,6 +44,7 @@ app.use('/upload', uploadsRouter);
 
 const userRouter = require('./routes/userRouter')
 const googleUserRouter = require('./routes/googleUserRouter')
+const mapRouter = require('./routes/mapRouter')
 
 passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((user, done) => done(null, user))
@@ -84,6 +85,7 @@ passport.use(
   )
 )
 app.use('/user', userRouter)
+app.use('/karta', mapRouter)
 app.use('/googleUser', googleUserRouter)
 
 app.listen(PORT, () => {

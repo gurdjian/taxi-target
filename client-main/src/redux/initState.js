@@ -1,5 +1,6 @@
 const initState = {
-  user:null
+  user:null,
+  range:[],
 }
 
 const getInitState = () => {
