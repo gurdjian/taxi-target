@@ -12,10 +12,12 @@ module.exports = {
     const arrToDb = [];
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < ads.length; i++) {
-      const { id, url, time}
+      const { id, url, duration} = ads;
       arrToDb.push({
         id,
-        url
+        user_id: 2,
+        url,
+        time: duration,
       });
     }
     await queryInterface.bulkInsert('Ranges', arrToDb, {});
