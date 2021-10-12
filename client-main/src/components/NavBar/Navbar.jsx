@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './navbar.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import { Link, useHistory } from "react-router-dom"
-import { logoutUser } from '../../redux/actions/userAction';
+import { googleCheckAuth, logoutUser } from '../../redux/actions/userAction';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +22,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Navbar() {
+
+  // const currentUser = useSelector(state => state.user)
+
+  // useEffect(() => {
+  //   dispatch(googleCheckAuth())
+  // }, [])
+
+  // const checkHandler = () => {
+  //   dispatch(googleCheckAuth())
+
+  // }
 
   const dispatch = useDispatch();
 
@@ -43,7 +54,7 @@ function Navbar() {
           <Toolbar>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <Link to="/" className={style.super_puper_link}>
-              <LocalTaxiIcon />
+                <LocalTaxiIcon />
               </Link>
             </IconButton>
             <Typography variant="h6" className={classes.title}>
@@ -64,7 +75,7 @@ function Navbar() {
               Taxi-target
       </Typography>
             <Link className={style.super_puper_link} to="/signin"><Button color="inherit">Войти</Button></Link>
-            <Link className={style.super_puper_link} to="/signup"><Button color="inherit">Зарегистрироваться</Button></Link>
+            <Link style={{ textDecoration: 'none', color: 'white' }} to="/signup"><Button color="inherit">Зарегистрироваться</Button></Link>
           </Toolbar>
         }
       </AppBar>

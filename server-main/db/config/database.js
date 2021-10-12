@@ -1,4 +1,4 @@
-module.exports = {
+ module.exports = {
   "development": {
     "username": process.env.DBUSER,
     "password": process.env.PASSWORD,

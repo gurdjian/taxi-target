@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "react-hint/css/index.css";
-import koordinaty from '../../models/koordinaty'
-import zones from '../../models/zones'
 import {
   YMaps,
   Map,
@@ -11,6 +9,7 @@ import {
   Placemark,
   Rectangle,
   ObjectManager,
+  Polygon,
 } from "react-yandex-maps";
 import style from './karta.module.css'
 import PropTypes from 'prop-types';
@@ -19,6 +18,9 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring';
 import ReactHintFactory from 'react-hint'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllRange } from '../../redux/actions/rangeAction';
+import { Button, TextField } from '@material-ui/core';
 const ReactHint = ReactHintFactory(React)
 
 const useStyles = makeStyles((theme) => ({
@@ -87,6 +89,15 @@ Fade.propTypes = {
 
 function Karta() {
 
+  const dispatch = useDispatch();
+
+  const range = useSelector(state => state.range)
+  console.log(range);
+
+  useEffect(() => {
+    dispatch(getAllRange())
+  }, [])
+
   const [drag, setDrag] = useState(false);
 
   const dragStartHandler = (e) => {
@@ -154,7 +165,7 @@ function Karta() {
 
             {/* {coordinates.map(coordinate => <Placemark geometry={coordinate} />)} */}
             {/* <ReactHint events /> */}
-            {koordinaty?.map((el) => <Rectangle data-rh="Add top-level category" geometry={el.geometry} onClick={handleOpen}
+            {/* {koordinaty?.map((el) => <Rectangle data-rh="Add top-level category" geometry={el.geometry} onClick={handleOpen}
               options={{
                 fillColor: '#ffff0022',
                 strokeColor: el.strokeColor,
@@ -167,9 +178,9 @@ function Karta() {
               modules={
                 ['geoObject.addon.hint']
               }
-            ></Rectangle>)}
-
-            {/* <Rectangle
+            ></Rectangle>)} */}
+            {/* 
+            <Rectangle
               data-rh="Add top-level category"
               geometry={[
                 [55.66, 37.6],
@@ -190,11 +201,59 @@ function Karta() {
                 ['geoObject.addon.balloon', 'geoObject.addon.hint']
               }
             /> */}
+            <>
+              {range?.map((el) => {
+                return <Polygon
+                  data-rh="Add top-level category"
+                  geometry={[JSON.parse(el.zone_geo)]}
+                  onClick={handleOpen}
+                  options={{
+                    fillColor: '#ffff0022',
+                    strokeColor: '#3caa3c88',
+                    strokeWidth: 2,
+
+                  }}
+                  properties={{
+                    hintContent: el.price
+                  }}
+                  modules={
+                    ['geoObject.addon.hint']
+                  }
+                />
+              })}
+            </>
+
+            {/* <Polygon
+              data-rh="Add top-level category"
+              geometry={[[
+                [55.75, 37.80],
+                [55.80, 37.90],
+                [55.75, 38.00],
+                [55.70, 38.00],
+                [55.70, 37.80]
+              ]]
+              }
+              onClick={handleOpen}
+              options={{
+                fillColor: '#ffff0022',
+                strokeColor: '#3caa3c88',
+                strokeWidth: 7,
+
+              }}
+              properties={{
+                balloonContent: 'Это балун',
+                hintContent: ' Sexy '
+              }}
+              modules={
+                ['geoObject.addon.balloon', 'geoObject.addon.hint']
+              }
+            >
+            </Polygon>  */}
 
           </Map>
         </div>
 
-        {/*
+        {/*         
         {zones?.map((el) => <div> <Modal
           aria-labelledby="spring-modal-title"
           aria-describedby="spring-modal-description"
@@ -235,10 +294,21 @@ function Karta() {
           >
             <Fade in={open}>
               <div className={classes.paper}>
-                <form >
-                  <h2 id="spring-modal-title">Vyberite chtoto</h2>
-                  {/* <p id="spring-modal-description">react-spring animates me.</p> */}
-                  <label>
+
+                <form className={classes.root} noValidate autoComplete="off">
+                <h2 id="spring-modal-title">Контакты</h2>
+                  <TextField id="standard-basic" label="Имя" /> <br />
+                  <TextField id="standard-basic" label="Номер телефона" /> <br />
+                  <TextField id="standard-basic" label="Email" /> <br />
+                  <TextField id="standard-basic" label="Комментарий" /> <br />
+                  <div className={style.button}>
+                    <Button variant="contained" color="primary">
+                      Отправить </Button>
+                  </div>
+                </form>
+                {/* <h2 id="spring-modal-title">Vyberite chtoto</h2> */}
+                {/* <p id="spring-modal-description">react-spring animates me.</p> */}
+                {/* <label>
                     eto knopka ebanaya dlya faila
     <input type="file" style={{ visibility: 'hidden' }} />
                   </label>
@@ -256,8 +326,7 @@ function Karta() {
                         onDragLeave={e => dragLeaveHandler(e)}
                         onDragOver={e => dragStartHandler(e)}
                       >Перетащите файлы, чтобы загрузить их</div>}
-                  </div>
-                </form>
+                  </div> */}
               </div>
             </Fade>
           </Modal>
@@ -265,7 +334,7 @@ function Karta() {
 
       </div>
 
-    </YMaps>
+    </YMaps >
   )
 }
 
