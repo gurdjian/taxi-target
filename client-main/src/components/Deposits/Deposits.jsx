@@ -18,16 +18,17 @@ export default function Deposits() {
   useEffect(()=> {
     dispatch(getWalletAction())
   }, []);
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric' };
 
   const classes = useStyles();
   return (
     <React.Fragment>
-      <p>Recent Deposits</p>
+      <p>Баланс:</p>
       <Typography component="p" variant="h4">  	
         &#8381;{wallet}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2019
+        {(new Date()).toLocaleString('ru-Ru',options)}
       </Typography>
     </React.Fragment>
   );
