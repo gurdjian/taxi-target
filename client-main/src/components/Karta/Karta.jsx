@@ -3,12 +3,6 @@ import "react-hint/css/index.css";
 import {
   YMaps,
   Map,
-  Clusterer,
-  FullscreenControl,
-  SearchControl,
-  Placemark,
-  Rectangle,
-  ObjectManager,
   Polygon,
 } from "react-yandex-maps";
 import style from './karta.module.css'
@@ -21,7 +15,6 @@ import ReactHintFactory from 'react-hint'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllRange } from '../../redux/actions/rangeAction';
 import { Button, TextField } from '@material-ui/core';
-const ReactHint = ReactHintFactory(React)
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -98,26 +91,26 @@ function Karta() {
     dispatch(getAllRange())
   }, [])
 
-  const [drag, setDrag] = useState(false);
+  // const [drag, setDrag] = useState(false);
 
-  const dragStartHandler = (e) => {
-    e.preventDefault();
-    setDrag(true);
-  }
+  // const dragStartHandler = (e) => {
+  //   e.preventDefault();
+  //   setDrag(true);
+  // }
 
-  const dragLeaveHandler = (e) => {
-    e.preventDefault();
-    setDrag(false);
-  }
+  // const dragLeaveHandler = (e) => {
+  //   e.preventDefault();
+  //   setDrag(false);
+  // }
 
-  const onDropHandler = (e) => {
-    e.preventDefault();
-    let files = [...e.dataTransfer.files]
-    console.log(files);
-    const formData = new FormData();
-    formData.append('file', files[0])
-    setDrag(false)
-  }
+  // const onDropHandler = (e) => {
+  //   e.preventDefault();
+  //   let files = [...e.dataTransfer.files]
+  //   console.log(files);
+  //   const formData = new FormData();
+  //   formData.append('file', files[0])
+  //   setDrag(false)
+  // }
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -161,46 +154,6 @@ function Karta() {
               }
             }}
           >
-
-
-            {/* {coordinates.map(coordinate => <Placemark geometry={coordinate} />)} */}
-            {/* <ReactHint events /> */}
-            {/* {koordinaty?.map((el) => <Rectangle data-rh="Add top-level category" geometry={el.geometry} onClick={handleOpen}
-              options={{
-                fillColor: '#ffff0022',
-                strokeColor: el.strokeColor,
-                strokeWidth: 1,
-
-              }}
-              properties={{
-                hintContent: el.hintContent,
-              }}
-              modules={
-                ['geoObject.addon.hint']
-              }
-            ></Rectangle>)} */}
-            {/* 
-            <Rectangle
-              data-rh="Add top-level category"
-              geometry={[
-                [55.66, 37.6],
-                [55.71, 37.69],
-              ]}
-              onClick={handleOpen}
-              options={{
-                fillColor: '#ffff0022',
-                strokeColor: '#3caa3c88',
-                strokeWidth: 7,
-
-              }}
-              properties={{
-                balloonContent: 'Это балун',
-                hintContent: ' Sexy '
-              }}
-              modules={
-                ['geoObject.addon.balloon', 'geoObject.addon.hint']
-              }
-            /> */}
             <>
               {range?.map((el) => {
                 return <Polygon
@@ -252,31 +205,6 @@ function Karta() {
 
           </Map>
         </div>
-
-        {/*         
-        {zones?.map((el) => <div> <Modal
-          aria-labelledby="spring-modal-title"
-          aria-describedby="spring-modal-description"
-          className={classes.modal}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        ></Modal>
-          <Fade in={open}>
-            <div className={classes.paper}>
-              <h2 id="spring-modal-title">Spring modal</h2>
-              <p id="spring-modal-description">react-spring animates me.</p>
-              <label >
-                eto knopka ebanaya
-    <input type="file" style={{ visibility: 'hidden' }} />
-              </label>
-            </div>
-          </Fade>
-          </div>)} */}
 
         <div>
 
