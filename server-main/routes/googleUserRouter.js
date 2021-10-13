@@ -5,16 +5,11 @@ const { v4: uuidv4 } = require('uuid');
 const { User } = require('../db/models');
 
 router.get('/main', async (req, res) => {
-
-
   if (req?.session?.passport) {
     res.locals.name = req.session.passport.user.displayName;
   }
   res.render('main');
-
-
 });
-
 
 router.get(
   '/signIn',
@@ -33,8 +28,8 @@ router.get(
 
 router.get('/logOut', (req, res) => {
   req.session.destroy();
-  res.clearCookie('sId').json('OK')
-
+  req.logout();
+  res.clearCookie('sId').json('OK');
 });
 
 router.get('/checkAuth', async (req, res) => {
