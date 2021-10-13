@@ -1,0 +1,14 @@
+.events__mapWrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.events__map {
+  z-index: 0;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.button{
+  padding-top: 40px;
+}

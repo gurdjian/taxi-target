@@ -2,7 +2,8 @@ const initState = {
   user: null,
   wallet: 0,
   cabinet: {},
-  range:[],
+  range: [],
+  advertisement: [],
 }
 
 export default initState

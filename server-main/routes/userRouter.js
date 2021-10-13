@@ -27,7 +27,7 @@ router.route('/signin')
 
 router.route('/signup')
   .post(async (req, res) => {
-    console.log(req.body)
+    console.log(req.body.login)
     const { login, email, password } = req.body
     if (login && email && password) {
       console.log('success');
