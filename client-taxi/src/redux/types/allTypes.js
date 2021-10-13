@@ -9,3 +9,4 @@ export const STOP_ROUTING = 'STOP_ROUTING';
 export const SET_STATUS = 'SET_STATUS';
 
 export const SET_RANGES = 'SET_RANGES';
+export const GET_RANGE = 'GET_RANGE';

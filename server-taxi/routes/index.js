@@ -2,9 +2,10 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
 const router = require('express').Router();
-const fs = require('fs');
+// const fs = require('fs');
 const geolib = require('geolib');
-const { Range } = require('../db/models');
+const { Op } = require('sequelize');
+const { Range, Advertisement, AdvertisementRange } = require('../db/models');
 
 async function getCurrentPolygon(curCoord) {
   const polygons = await Range.findAll();
@@ -24,11 +25,37 @@ async function getCurrentPolygon(curCoord) {
   // }
   return polygonsArr;
 }
-router.get('/', (req, res) => {
-  const { ads } = JSON.parse(fs.readFileSync(`${process.env.PWD}/db/db.json`, 'utf-8'));
-  const index = Math.round(Math.random() * 9);
-  // const polygonsArr = getCurrentPolygon(req.app.locals.traektoria.getCurrentCoordinate());
+
+router.get('/', async (req, res) => {
+  // мок:
+  // const { ads } = JSON.parse(fs.readFileSync(`${process.env.PWD}/db/db.json`, 'utf-8'));
+  const polygonsArr = await getCurrentPolygon(req.app.locals.traektoria.getCurrentCoordinate());
+  const polygon = polygonsArr.map((elem) => elem.id);
+  const adsQuery = await Advertisement.findAll({
+    include: {
+      model: Range,
+      where: {
+        id: {
+          [Op.in]: polygon,
+        },
+      },
+    },
+  });
+  const ads = adsQuery.map((elem) => ({id: elem.id, url: elem.url, duration: elem.time }));
+  const index = Math.round(Math.random() * (ads.length - 1));
+  const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+  const time = (new Date()).toLocaleTimeString('ru-Ru', options);
+  console.log('time = ', time, 'ads = ', ads);
   res.json(ads[index]);
+});
+
+router.post('/range', async (req, res) => {
+  const { coord } = req.body;
+  // req.app.locals.traektoria.coords = coord;
+  const polygonsArr = await getCurrentPolygon(coord);
+  const polygon = polygonsArr.map((elem) => JSON.parse(elem.zone_geo));
+  console.log(polygon);
+  res.json(polygon);
 });
 
 router.get('/current', async (req, res) => {

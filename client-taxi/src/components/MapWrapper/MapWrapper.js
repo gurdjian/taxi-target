@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { YMaps, Map, Placemark, Polygon } from 'react-yandex-maps';
-import { getPositionSaga } from '../../redux/actions/sagaActions';
+import { setPositionAction } from '../../redux/actions/reduxActions';
+import { getPositionSaga, getRange } from '../../redux/actions/sagaActions';
 
 
 const MapWrapper = () => {
@@ -14,10 +15,18 @@ const MapWrapper = () => {
     setTimeout(() => {
       dispatch(getPositionSaga());
       // setMapCenter(position);
-    }, 50)
+      
+    }, 500)
     // setMapZoom(14);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [position])
+  }, [position]);
+
+  useEffect(() => {
+    dispatch(getRange(position));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const rangesPolygon = ranges.map( (elem, index) => {
  
       return <Polygon
@@ -32,14 +41,31 @@ const MapWrapper = () => {
         }}
       />
   });
+  function mapHandler(ymaps) {
+    console.log('ymaps = ', ymaps);
+    // const myMap = ymaps[0].Map;
+    // console.log('myMap = ', myMap);
+    // myMap?.events?.add('click', function (e) {
+    //   myMap.balloon.open(e.get('coords'), 'Щелк!');
+    //   console.log(e.get('coords'));      
+    // });
+  }
+  function clickHandler(e) {
+    console.log(e.get('coords'));
+    dispatch(setPositionAction(e.get('coords')));
+    dispatch(getRange(e.get('coords')));
+  }
   return (
-  <YMaps>
-    {/* state={{ center: [55.75, 37.57], zoom: 10 }} */}
-    <Map defaultState={{ center: [55.75, 37.62], zoom: 10 }} style={({width: '99%', height: '75vh'})}>
-      <Placemark geometry={position} options={({preset: 'islands#yellowAutoCircleIcon'})}/>
-      {rangesPolygon}
-    </Map>
-  </YMaps>
+    <>
+      <YMaps>
+        {/* state={{ center: [55.75, 37.57], zoom: 10 }} */}
+        <Map onClick={clickHandler} onLoad={mapHandler} defaultState={{ center: [55.75, 37.62], zoom: 10 }} style={({width: '99%', height: '75vh'})}>
+          <Placemark geometry={position} options={({preset: 'islands#yellowAutoCircleIcon'})}/>
+          {rangesPolygon}
+        </Map>
+      </YMaps>
+     <span style={({color: 'white'})}>{position.join(', ')}</span> 
+  </>
   )
 };
 

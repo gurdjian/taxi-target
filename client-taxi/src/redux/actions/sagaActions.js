@@ -1,4 +1,4 @@
-import { SAGA_UPDATE_IMG, UPDATE_IMG, GET_POSITION, START_ROUTING, STOP_ROUTING} from '../types/allTypes';
+import { SAGA_UPDATE_IMG, UPDATE_IMG, GET_POSITION, START_ROUTING, STOP_ROUTING, GET_RANGE} from '../types/allTypes';
 
 export const updateUrlAction = (value) => ({
   type: UPDATE_IMG,
@@ -22,5 +22,10 @@ export const startRouting = (value) => ({
 
 export const stopRouting = (value) => ({
   type: STOP_ROUTING,
+  payload: value,
+});
+
+export const getRange = (value) => ({
+  type: GET_RANGE,
   payload: value,
 });

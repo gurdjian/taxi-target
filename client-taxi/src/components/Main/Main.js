@@ -13,33 +13,16 @@ import { startRouting, stopRouting } from '../../redux/actions/sagaActions';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
-  marginAutoContainer: {
-    width: 500,
-    height: 80,
-    display: 'flex',
-    backgroundColor: 'gold',
-  },
-  marginAutoItem: {
-    margin: 'auto'
-  },
-  alignItemsAndJustifyContent: {
-    width: 500,
-    height: 80,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'pink',
-  },
   elbrusfamily: {
     fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif',
-    font: '#4520ab',
-
+    color: '#4520ab',
   }
 }));
 
@@ -69,13 +52,17 @@ function Main() {
         <Grid container spacing={0}>
           <Grid item xs={3}>
             <Grid container spacing={1}>
-              <Grid item center xs>
+              <Grid item  xs>
               <Box
                 display="flex" 
-                bgcolor="white"
+                bgcolor="gold"
+                className={classes.elbrusfamily}
               >
-                <Box m="auto">
-               <h1 className={classes.elbrusfamily}>Elbrus Navigator</h1>
+                <Box 
+                m="auto"
+                bgcolor="gold"
+                >
+               <h1>Elbrus Navigator</h1>
                 </Box>
               </Box>
               </Grid>

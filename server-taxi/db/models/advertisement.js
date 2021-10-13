@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Advertisement extends Model {
@@ -14,22 +14,22 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(Range, {
         through: 'AdvertisementRange',
         foreignKey: 'advertisement_id',
-        otherKey: 'range_id'
+        otherKey: 'range_id',
       });
     }
   };
   Advertisement.init({
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     url: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     time: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
   }, {
     sequelize,

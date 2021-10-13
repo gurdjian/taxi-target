@@ -20,7 +20,7 @@ function* getUrlWorker(action) {
   } catch (error) {
     yield put({
       type: UPDATE_IMG,
-      payload: 'https://st2.depositphotos.com/2673929/6455/i/950/depositphotos_64556341-stock-photo-404-symbol.jpg',
+      payload: {url: 'https://st2.depositphotos.com/2673929/6455/i/950/depositphotos_64556341-stock-photo-404-symbol.jpg', duration: 5},
     });
   }
 }
