@@ -8,6 +8,8 @@ import MapWrapper from '../MapWrapper/MapWrapper';
 import { Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { startRouting, stopRouting } from '../../redux/actions/sagaActions';
+import useSound from 'use-sound';
+import taxi from '../sound/taxi.mp3';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,15 +31,17 @@ const useStyles = makeStyles((theme) => ({
 
 function Main() {
   const dispatch = useDispatch();
+  const [playTaxi, { stop } ] = useSound(taxi);
+
   const startHadler = (e) => {
-   
+    playTaxi();
     dispatch(startRouting());
     // const tId = setTimeout( () => {
     //   myMap.geoObjects.add( elem );
     // }, stepDuration * index )
   }
   const stopHadler = (e) => {
-   
+    stop()
     dispatch(stopRouting());
     // const tId = setTimeout( () => {
     //   myMap.geoObjects.add( elem );
