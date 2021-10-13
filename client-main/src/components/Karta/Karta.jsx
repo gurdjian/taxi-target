@@ -143,7 +143,7 @@ function Karta() {
               }
             }}
             modules={["templateLayoutFactory", "layout.ImageWithContent", "geolocation", "geocode"]}
-            defaultState={{ center: [55.75, 37.57], zoom: 9 }}
+            defaultState={{ center: [55.75, 37.57], zoom: 11 }}
             onClick={(event) => {
               try {
                 if (event?.get("coords")) {
