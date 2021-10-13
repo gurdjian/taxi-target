@@ -31,7 +31,6 @@ export const checkAuth = () => async (dispatch) => {
 export const googleCheckAuth = () => async (dispatch) => {
   try {
     const response = await axios.get(`${url}/googleUser/checkAuth`, { withCredentials: true })
-    console.log('pipa', response.data);
     // const newUser = response.data
     dispatch({ type: SET_NEW_USER, payload: response.data })
     // console.log(newUser);

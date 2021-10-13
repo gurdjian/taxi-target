@@ -23,6 +23,7 @@ passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((user, done) => done(null, user))
 app.use(cors({ credentials: true, origin: process.env.ORIGIN, sameSite: false }));
 
+
 const sessionConfig = {
   store: new FileStore({ path: './sessions' }),
   key: 'sid',
@@ -40,7 +41,6 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 app.use(passport.initialize())
 app.use(passport.session(sessionConfig))
-
 //Здесь подключаем роуты
 const uploadsRouter = require('./routes/uploadsRouter');
 const mapRouter = require('./routes/mapRouter');

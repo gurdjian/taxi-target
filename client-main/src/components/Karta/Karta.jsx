@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring';
-import ReactHintFactory from 'react-hint'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllRange } from '../../redux/actions/rangeAction';
 import { Button, TextField } from '@material-ui/core';
@@ -85,7 +84,6 @@ function Karta() {
   const dispatch = useDispatch();
 
   const range = useSelector(state => state.range)
-  console.log(range);
 
   useEffect(() => {
     dispatch(getAllRange())

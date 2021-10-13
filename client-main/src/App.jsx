@@ -5,10 +5,11 @@ import History from './components/History/History'
 import Navbar from './components/NavBar/Navbar'
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
-import { useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import PersonalCabinet from "./components/PersonalCabinet/PersonalCabinet"
 import { checkAuth, googleCheckAuth } from "./redux/actions/userAction"
+import Main from "./components/Main/Main"
 
 function App() {
 
@@ -24,6 +25,9 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
+          <Route exact path="/">
+            <Main />
+          </Route>
           <Route exact path="/karta">
             <Karta />
           </Route>
@@ -36,7 +40,7 @@ function App() {
           <Route exact path="/signup">
             <SignUp />
           </Route>
-          <Route exact path="/сabinet" component = {PersonalCabinet}/>
+          <Route exact path="/сabinet" component={PersonalCabinet} />
         </Switch>
       </Router>
     </div>
