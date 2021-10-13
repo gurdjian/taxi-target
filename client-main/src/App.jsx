@@ -10,6 +10,7 @@ import { useEffect } from "react"
 import PersonalCabinet from "./components/PersonalCabinet/PersonalCabinet"
 import { checkAuth, googleCheckAuth } from "./redux/actions/userAction"
 import Admin from "./components/Admin/Admin"
+import Main from "./components/Main/Main"
 
 function App() {
 
@@ -27,6 +28,9 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
+          <Route exact path="/">
+            <Main />
+          </Route>
           <Route exact path="/karta">
             <Karta />
           </Route>

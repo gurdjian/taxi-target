@@ -11,11 +11,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring';
-// import ReactHintFactory from 'react-hint'
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllRange } from '../../redux/actions/rangeAction';
 import { Button, TextField } from '@material-ui/core';
-// const ReactHint = ReactHintFactory(React)
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -86,7 +84,6 @@ function Karta() {
   const dispatch = useDispatch();
 
   const range = useSelector(state => state.range)
-  console.log(range);
 
   useEffect(() => {
     dispatch(getAllRange())
@@ -156,46 +153,6 @@ function Karta() {
               }
             }}
           >
-
-
-            {/* {coordinates.map(coordinate => <Placemark geometry={coordinate} />)} */}
-            {/* <ReactHint events /> */}
-            {/* {koordinaty?.map((el) => <Rectangle data-rh="Add top-level category" geometry={el.geometry} onClick={handleOpen}
-              options={{
-                fillColor: '#ffff0022',
-                strokeColor: el.strokeColor,
-                strokeWidth: 1,
-
-              }}
-              properties={{
-                hintContent: el.hintContent,
-              }}
-              modules={
-                ['geoObject.addon.hint']
-              }
-            ></Rectangle>)} */}
-            {/* 
-            <Rectangle
-              data-rh="Add top-level category"
-              geometry={[
-                [55.66, 37.6],
-                [55.71, 37.69],
-              ]}
-              onClick={handleOpen}
-              options={{
-                fillColor: '#ffff0022',
-                strokeColor: '#3caa3c88',
-                strokeWidth: 7,
-
-              }}
-              properties={{
-                balloonContent: 'Это балун',
-                hintContent: ' Sexy '
-              }}
-              modules={
-                ['geoObject.addon.balloon', 'geoObject.addon.hint']
-              }
-            /> */}
             <>
               {range?.map((el) => {
                 return <Polygon
@@ -247,31 +204,6 @@ function Karta() {
 
           </Map>
         </div>
-
-        {/*         
-        {zones?.map((el) => <div> <Modal
-          aria-labelledby="spring-modal-title"
-          aria-describedby="spring-modal-description"
-          className={classes.modal}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        ></Modal>
-          <Fade in={open}>
-            <div className={classes.paper}>
-              <h2 id="spring-modal-title">Spring modal</h2>
-              <p id="spring-modal-description">react-spring animates me.</p>
-              <label >
-                eto knopka ebanaya
-    <input type="file" style={{ visibility: 'hidden' }} />
-              </label>
-            </div>
-          </Fade>
-          </div>)} */}
 
         <div>
 

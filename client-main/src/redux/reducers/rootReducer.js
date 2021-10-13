@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux'
 import cabinetReducer from './cabinetReducer'
+import allRangeReducer from './rangeReducer'
 import userReducer from './userReducer'
 import walletReducer from './walletReducer'
-import allRangeReducer from './rangeReducer'
 import adminReducer from './adminReducer'
 
 const rootReducer = combineReducers({

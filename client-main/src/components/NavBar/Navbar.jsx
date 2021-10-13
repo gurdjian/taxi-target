@@ -23,17 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
 
-  // const currentUser = useSelector(state => state.user)
-
-  // useEffect(() => {
-  //   dispatch(googleCheckAuth())
-  // }, [])
-
-  // const checkHandler = () => {
-  //   dispatch(googleCheckAuth())
-
-  // }
-
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -42,9 +31,20 @@ function Navbar() {
 
   const logoutHandler = () => {
     dispatch(logoutUser())
+    console.log(document.cookie);
     history.push('/')
   }
 
+//   function deleteAllCookies() {
+//     var cookies = document.cookie.split(";");
+
+//     for (var i = 0; i < cookies.length; i++) {
+//         var cookie = cookies[i];
+//         var eqPos = cookie.indexOf("=");
+//         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+//         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+//     }
+// }
   const classes = useStyles();
 
   return (
@@ -62,7 +62,6 @@ function Navbar() {
           </Typography>
             <Link className={style.super_puper_link} to="сabinet"><Button color="inherit">Личный кабинет</Button></Link>
             <Link className={style.super_puper_link} to="karta"><Button color="inherit">Карта</Button></Link>
-            <Link className={style.super_puper_link} to="history"><Button color="inherit">История</Button></Link>
             <Button onClick={logoutHandler} color="inherit">Выйти</Button>
           </Toolbar>
         }

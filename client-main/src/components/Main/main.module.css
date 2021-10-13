@@ -1,0 +1,39 @@
+.background{
+  background-image: url(https://www.buhonline.ru/Files/Modules/Publication/13778_o_l_2x.webp?t=1534408192);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  height: 83vh;
+}
+.title{
+  margin-top: 100px;
+  font-size: 35px;
+  margin: 45px;
+}
+
+.text{
+  font-size: 25px;
+  margin: 40px;
+
+}
+
+.footer{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.otstupy{
+  padding-left: 10px;
+}
+
+.fon{
+  opacity: 0.8;
+}
+
+
+/* backgroundImage: 'url(/img/taxi.png)', backgroundSize: '100% auto', backgroundRepeat: 'no-repeat' */

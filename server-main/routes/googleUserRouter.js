@@ -33,7 +33,7 @@ router.get(
 
 router.get('/logOut', (req, res) => {
   req.session.destroy();
-  res.clearCookie('sId').json({ fucker: 'FATHERFUCKER' })
+  res.clearCookie('sId').json('OK')
 
 });
 
