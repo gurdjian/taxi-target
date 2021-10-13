@@ -47,6 +47,7 @@ const mapRouter = require('./routes/mapRouter');
 const userRouter = require('./routes/userRouter')
 const googleUserRouter = require('./routes/googleUserRouter')
 const depositsUserRouter = require('./routes/depositsUserRouter')
+const adminRouter = require('./routes/adminRouter');
 
 passport.use(
   new GoogleStrategy(
@@ -70,6 +71,7 @@ app.use('/karta', mapRouter)
 app.use('/googleUser', googleUserRouter)
 app.use('/upload', uploadsRouter);
 app.use('/deposits', depositsUserRouter);
+app.use('/admin', adminRouter)
 
 app.listen(PORT, () => {
   console.log('Server-main start on port', PORT);
