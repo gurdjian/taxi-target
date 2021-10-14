@@ -1,5 +1,6 @@
 html, body{
   height: 100%;
+  
 }
 
 body{
@@ -7,7 +8,10 @@ body{
   background: linear-gradient(-45deg, 
   #276bc4, #6DD5FA, #FFFFFF);
   background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 36px;
+  /* animation: gradient 10s ease infinite; */
 }
 
 @keyframes gradient {
@@ -20,4 +24,13 @@ body{
   100%{
     background-position: 0 50%;
   }
+}
+
+
+.button {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #3f51b5;
+  padding: 10px 20px;
 }

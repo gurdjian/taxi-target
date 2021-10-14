@@ -13,9 +13,6 @@ import { googleCheckAuth, logoutUser } from '../../redux/actions/userAction';
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   title: {
     flexGrow: 1,
   },
@@ -48,7 +45,7 @@ function Navbar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static">
         {user &&
           <Toolbar>
