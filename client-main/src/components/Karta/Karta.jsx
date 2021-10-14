@@ -131,7 +131,7 @@ function Karta() {
       }}
       version={"2.1"}
     >
-      <div>
+      
         <div className={style.events__mapWrapper}>
           <Map
             className={style.events__map}
@@ -143,7 +143,7 @@ function Karta() {
               }
             }}
             modules={["templateLayoutFactory", "layout.ImageWithContent", "geolocation", "geocode"]}
-            defaultState={{ center: [55.75, 37.57], zoom: 11 }}
+            defaultState={{ center: [55.75, 37.57], zoom: 10 }}
             onClick={(event) => {
               try {
                 if (event?.get("coords")) {
@@ -257,7 +257,7 @@ function Karta() {
               </div>
             </Fade>
           </Modal>
-        </div>
+      
 
       </div>
 

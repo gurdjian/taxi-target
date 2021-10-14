@@ -5,6 +5,7 @@ import {updateUrlSaga} from '../../redux/actions/sagaActions'
 
 function ImgWrapper() {
   const ads = useSelector( state => state.ads);
+  const range = useSelector( state => state.ranges);
   const dispatch = useDispatch();
   
   // console.log(`===> render ${Date.now()}. ads = ${JSON.stringify(ads)} ads.duration = ${ads.duration}`);   
@@ -27,7 +28,7 @@ function ImgWrapper() {
 // eslint-disable-next-line 
   useEffect(() => {
     dispatch(updateUrlSaga());
-  }, []);
+  }, [range]);
   const adsstyle = {
     position: 'relative',
     left: '25%',

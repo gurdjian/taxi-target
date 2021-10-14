@@ -23,9 +23,10 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
       <Router>
         <Navbar />
+        <div style={{flexGrow: 1, display: 'flex', flexDirection: 'column'}}>
         <Switch>
           <Route exact path="/">
             <Main />
@@ -42,6 +43,7 @@ function App() {
           <Route exact path="/сabinet" component={PersonalCabinet} />
           <Route exact path="/admin" component = {Admin}/>
         </Switch>
+        </div>
       </Router>
     </div>
   );

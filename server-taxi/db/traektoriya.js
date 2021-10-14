@@ -5,6 +5,7 @@ class Traektoria {
   constructor() {
     this.coords = [];
     this.step = 0;
+    this.currentCoords = 0;
     this.currentDuration = 0;
     this.inProcess = false;
     this.queue = [];
@@ -19,6 +20,7 @@ class Traektoria {
   stopRoute() {
     clearInterval(this.currentTimerId);
     this.step = 0;
+    this.currentCoords = this.coords[this.step];
     this.inProcess = false;
     // if (this.queue.length > 0) {
     //   this.startRoute(this.queue.shift());
@@ -33,10 +35,12 @@ class Traektoria {
       const timer = setInterval(() => {
         this.inProcess = true;
         this.step += 1;
+        this.currentCoords = this.coords[this.step];
         console.log(`timerId = ${timer}\tstep = ${this.step}\tqueue = ${this.queue}`);
         if (this.step >= this.coords.length) {
           clearInterval(timer);
           this.step = 0;
+          this.currentCoords = this.coords[this.step];
           this.inProcess = false;
           if (this.queue.length > 0) {
             this.startRoute(this.queue.shift());
@@ -52,7 +56,7 @@ class Traektoria {
   }
 
   getCurrentCoordinate() {
-    return this.coords[this.step];
+    return this.currentCoords;// 
   }
 }
 

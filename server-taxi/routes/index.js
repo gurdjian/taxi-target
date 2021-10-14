@@ -45,13 +45,13 @@ router.get('/', async (req, res) => {
   const index = Math.round(Math.random() * (ads.length - 1));
   const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
   const time = (new Date()).toLocaleTimeString('ru-Ru', options);
-  console.log('time = ', time, 'ads = ', ads);
+  console.log('polygon = ', polygon, 'time = ', time, 'ads = ', ads);
   res.json(ads[index]);
 });
 
 router.post('/range', async (req, res) => {
   const { coord } = req.body;
-  // req.app.locals.traektoria.coords = coord;
+  req.app.locals.traektoria.currentCoords = coord;
   const polygonsArr = await getCurrentPolygon(coord);
   const polygon = polygonsArr.map((elem) => JSON.parse(elem.zone_geo));
   console.log(polygon);

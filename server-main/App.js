@@ -62,6 +62,7 @@ passport.use(
         process.env.GOOGLE_REDIRECT_URL,
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log(`===> profile = ${JSON.stringify(profile)}`);
       return done(null, profile)
     }
   )
