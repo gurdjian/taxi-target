@@ -6,4 +6,5 @@ const initState = {
   advertisement: [],
 }
 
+
 export default initState

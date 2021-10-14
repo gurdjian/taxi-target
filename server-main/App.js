@@ -12,12 +12,14 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const fileUpload = require('express-fileupload');
+
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
+app.use(express.static(path.join(__dirname, 'uploads')));
+app.use(express.json({ extended: true }));
 app.use(morgan('dev'));
-app.use(multer({ dest: 'uploads' }).single('filedata'));
+
 
 passport.serializeUser((user, done) => done(null, user))
 passport.deserializeUser((user, done) => done(null, user))
@@ -42,12 +44,14 @@ app.use(session(sessionConfig))
 app.use(passport.initialize())
 app.use(passport.session(sessionConfig))
 //Здесь подключаем роуты
-const uploadsRouter = require('./routes/uploadsRouter');
+
 const mapRouter = require('./routes/mapRouter');
 const userRouter = require('./routes/userRouter')
 const googleUserRouter = require('./routes/googleUserRouter')
 const depositsUserRouter = require('./routes/depositsUserRouter')
 const adminRouter = require('./routes/adminRouter');
+const uploadRouter = require('./routes/uploadRouter')
+
 
 passport.use(
   new GoogleStrategy(
@@ -70,7 +74,10 @@ app.get('/', (req, res) => {
 app.use('/user', userRouter)
 app.use('/karta', mapRouter)
 app.use('/googleUser', googleUserRouter)
-app.use('/upload', uploadsRouter);
+// app.use(multer({dest: 'uploads'}).single('filedata'))
+const storage = multer.memoryStorage();
+app.use(multer({ storage }).single("file"));
+app.use('/file', uploadRouter);
 app.use('/deposits', depositsUserRouter);
 app.use('/admin', adminRouter)
 

@@ -14,7 +14,10 @@ import { useSpring, animated } from 'react-spring';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllRange } from '../../../redux/actions/rangeAction';
 import { Button, TextField } from '@material-ui/core';
-import { getAllPicture } from '../../../redux/actions/adminAction';
+import { getAllAdvertisement } from '../../../redux/actions/adminAction';
+import { ListGroup } from 'reactstrap';
+import Uploads from '../Uploads/Uploads';
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -90,8 +93,10 @@ function KartaAdmin() {
   }, []);
 
   useEffect(() => {
-    dispatch(getAllPicture())
+    dispatch(getAllAdvertisement())
   }, [])
+
+  const advertisement = useSelector(state => state.advertisement)
 
   const [idRange, setidRange] = useState(0);
 
@@ -178,9 +183,17 @@ function KartaAdmin() {
           >
             <Fade in={open}>
               <div className={classes.paper}>
+                
+                {advertisement?.map((el) => {
+                  if (idRange === el.rangeId) {
+                    return <p>{el.rangeId} {el.url} </p>
+                  }
+                })}
+
                 <form className={classes.root} noValidate autoComplete="off">
                   <h2 id="spring-modal-title">Контакты</h2>
-                  <h2>{ idRange }</h2>
+                  <h2>{idRange}</h2>
+                  <Uploads />
                   <TextField id="standard-basic" label="Имя" /> <br />
                   <TextField id="standard-basic" label="Номер телефона" /> <br />
                   <TextField id="standard-basic" label="Email" /> <br />
