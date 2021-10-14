@@ -27,10 +27,8 @@ function App() {
       <Router>
         <Navbar />
         <div style={{flexGrow: 1, display: 'flex', flexDirection: 'column'}}>
-        <Switch>
-          <Route exact path="/">
-            <Main />
-          </Route>
+          <Switch>
+          <Route exact path="/" component={Main } />
           <Route exact path="/karta">
             <Karta />
           </Route>

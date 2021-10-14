@@ -90,29 +90,19 @@ function Karta() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // const [drag, setDrag] = useState(false);
-
-  // const dragStartHandler = (e) => {
-  //   e.preventDefault();
-  //   setDrag(true);
-  // }
-
-  // const dragLeaveHandler = (e) => {
-  //   e.preventDefault();
-  //   setDrag(false);
-  // }
-
-  // const onDropHandler = (e) => {
-  //   e.preventDefault();
-  //   let files = [...e.dataTransfer.files]
-  //   console.log(files);
-  //   const formData = new FormData();
-  //   formData.append('file', files[0])
-  //   setDrag(false)
-  // }
+ 
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [aplOpen, setaplOpen] = React.useState(false);
+
+  const hendlerAplOpen = () => {
+    setaplOpen(true);
+  };
+
+  const hendlerAplClose = () => {
+    setaplOpen(false);
+  }
 
   const handleOpen = () => {
     setOpen(true);
@@ -175,32 +165,7 @@ function Karta() {
               })}
             </>
 
-            {/* <Polygon
-              data-rh="Add top-level category"
-              geometry={[[
-                [55.75, 37.80],
-                [55.80, 37.90],
-                [55.75, 38.00],
-                [55.70, 38.00],
-                [55.70, 37.80]
-              ]]
-              }
-              onClick={handleOpen}
-              options={{
-                fillColor: '#ffff0022',
-                strokeColor: '#3caa3c88',
-                strokeWidth: 7,
-
-              }}
-              properties={{
-                balloonContent: 'Это балун',
-                hintContent: ' Sexy '
-              }}
-              modules={
-                ['geoObject.addon.balloon', 'geoObject.addon.hint']
-              }
-            >
-            </Polygon>  */}
+            
 
           </Map>
         </div>
@@ -229,35 +194,35 @@ function Karta() {
                   <TextField id="standard-basic" label="Email" /> <br />
                   <TextField id="standard-basic" label="Комментарий" /> <br />
                   <div className={style.button}>
-                    <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" onClick={() => {
+                    handleClose();
+                    hendlerAplOpen();
+                  }}>
                       Отправить </Button>
                   </div>
                 </form>
-                {/* <h2 id="spring-modal-title">Vyberite chtoto</h2> */}
-                {/* <p id="spring-modal-description">react-spring animates me.</p> */}
-                {/* <label>
-                    eto knopka ebanaya dlya faila
-    <input type="file" style={{ visibility: 'hidden' }} />
-                  </label>
-
-                  <div className={classes.app}>
-                    {drag
-                      ? <div
-                        onDragStart={e => dragStartHandler(e)}
-                        onDragLeave={e => dragLeaveHandler(e)}
-                        onDragOver={e => dragStartHandler(e)}
-                        onDrop={e => onDropHandler(e)}
-                        className={classes.drop_area}>Отпустите файлы, чтобы загрузить их</div>
-                      : <div
-                        onDragStart={e => dragStartHandler(e)}
-                        onDragLeave={e => dragLeaveHandler(e)}
-                        onDragOver={e => dragStartHandler(e)}
-                      >Перетащите файлы, чтобы загрузить их</div>}
-                  </div> */}
+           
               </div>
             </Fade>
           </Modal>
-      
+          <Modal
+            aria-labelledby="spring-modal-title"
+            aria-describedby="spring-modal-description"
+            className={classes.modal}
+            open={aplOpen}
+            onClose={hendlerAplClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={aplOpen}>
+              <div className={classes.paper}>
+                <h2>Ваша заявка успешно отправленна </h2>
+              </div>
+            </Fade>
+          </Modal>
 
       </div>
 
