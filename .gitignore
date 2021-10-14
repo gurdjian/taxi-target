@@ -104,5 +104,4 @@ dist
 .tern-port
 
 sessions/
-*uploads
 test.js

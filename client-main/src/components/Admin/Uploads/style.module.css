@@ -1,0 +1,23 @@
+.events__mapWrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.events__map {
+  z-index: 0;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.button{
+  padding-top: 40px;
+}
+
+.drop_area {
+  width: 88px;
+  height: 88px;
+  border: 2px dashed mediumblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
