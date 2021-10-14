@@ -1,9 +1,9 @@
-import { GET_ALL_ADVERTISEMENT } from "../types";
+import { GET_ADS } from "../types";
 
 const adminReducer = (state= [], action) => {
   const { type, payload } = action
   switch (type) {
-    case GET_ALL_ADVERTISEMENT:
+    case GET_ADS:
       return payload
 
     default:

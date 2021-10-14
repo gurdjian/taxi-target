@@ -7,50 +7,12 @@ import {
 } from "react-yandex-maps";
 import style from './karta.module.css'
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllRange } from '../../../redux/actions/rangeAction';
-import { Button, TextField } from '@material-ui/core';
-import { getAllAdvertisement } from '../../../redux/actions/adminAction';
-import { ListGroup } from 'reactstrap';
-import Uploads from '../Uploads/Uploads';
-
-
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: 'honeydew',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(8, 10, 25),
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  app: {
-    width: '80px',
-    height: '80px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '14px',
-    padding: '20px'
-  },
-  drop_area: {
-    width: '88px',
-    height: '88px',
-    border: '2px dashed mediumblue',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
-}));
+import { getAds, getAllAdvertisement } from '../../../redux/actions/adminAction';
+import ModalPict from '../ModalPict/ModalPict';
+// import Uploads from '../Uploads/Uploads';
 
 const Fade = React.forwardRef(function Fade(props, ref) {
   const { in: open, children, onEnter, onExited, ...other } = props;
@@ -90,22 +52,26 @@ function KartaAdmin() {
 
   useEffect(() => {
     dispatch(getAllRange())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     dispatch(getAllAdvertisement())
-  }, [])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const advertisement = useSelector(state => state.advertisement)
+  useEffect(() => {
+    dispatch(getAds())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [idRange, setidRange] = useState(0);
 
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = (idRange) => {
-    setOpen(true);
     setidRange(idRange)
+    setOpen(true);
   };
 
   const handleClose = () => {
@@ -114,7 +80,20 @@ function KartaAdmin() {
   };
 
   let yymap;
-
+  function chooseColor(price) {
+    switch (price) {
+      case 100:
+        return '#e4272750';
+      case 95:
+        return '#e4a12770'
+      case 90:
+        return '#e4cc2770'    
+        case 50:
+        return '#9ce42770'        
+      default:
+        return '#27d3e470'
+    }
+  }
   return (
     <YMaps
       query={{
@@ -122,93 +101,59 @@ function KartaAdmin() {
       }}
       version={"2.1"}
     >
-      <div>
-        <div className={style.events__mapWrapper}>
-          <Map
-            className={style.events__map}
-            instanceRef={(ref) => {
-            }}
-            onLoad={(ymaps) => {
-              if (!yymap) {
-                yymap = ymaps;
+      <div className={style.events__mapWrapper}>
+        <Map
+          className={style.events__map}
+          instanceRef={(ref) => {
+          }}
+          onLoad={(ymaps) => {
+            if (!yymap) {
+              yymap = ymaps;
+            }
+          }}
+          modules={["templateLayoutFactory", "layout.ImageWithContent", "geolocation", "geocode"]}
+          defaultState={{ center: [55.75, 37.57], zoom: 11 }}
+          onClick={(event) => {
+            try {
+              if (event?.get("coords")) {
               }
-            }}
-            modules={["templateLayoutFactory", "layout.ImageWithContent", "geolocation", "geocode"]}
-            defaultState={{ center: [55.75, 37.57], zoom: 9 }}
-            onClick={(event) => {
-              try {
-                if (event?.get("coords")) {
-                }
-              } catch (error) {
-                console.log("ERRORRRRR", error);
-              }
-            }}
-          >
-            <>
-              {range?.map((el) => {
-                return <Polygon
-                  data-rh="Add top-level category"
-                  geometry={[JSON.parse(el.zone_geo)]}
-                  onClick={() => handleOpen(el.id)}
-                  options={{
-                    fillColor: '#ffff0022',
-                    strokeColor: '#3caa3c88',
-                    strokeWidth: 2,
+            } catch (error) {
+              console.log("ERROR", error);
+            }
+          }}
+        >
+          <>
+            {range?.map((el, index) => {
+              return <Polygon
+                data-rh="Add top-level category"
+                geometry={[JSON.parse(el.zone_geo)]}
+                onClick={() => handleOpen(el.id)}
+                options={{
+                  fillColor: chooseColor(el.price),
+                  strokeColor: '#3caa3c88',
+                  strokeWidth: 2,
 
-                  }}
-                  properties={{
-                    hintContent: el.price
-                  }}
-                  modules={
-                    ['geoObject.addon.hint']
-                  }
-                />
-              })}
-            </>
+                }}
+                key={index + 1}
+                properties={{
+                  hintContent: el.id
+                }}
+                modules={
+                  ['geoObject.addon.hint']
+                }
+              />
+            })}
+          </>
         </Map>
       </div>
       <div>
-
-          <Modal
-            aria-labelledby="spring-modal-title"
-            aria-describedby="spring-modal-description"
-            // className={classes.modal}
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-          >
-            <Fade in={open}>
-              <div className={classes.paper}>
-                
-                {advertisement?.map((el) => {
-                  if (idRange === el.rangeId) {
-                    return <p>{el.rangeId} {el.url} </p>
-                  }
-                })}
-
-                <form className={classes.root} noValidate autoComplete="off">
-                  <h2 id="spring-modal-title">Контакты</h2>
-                  <h2>{idRange}</h2>
-                  <Uploads />
-                  <TextField id="standard-basic" label="Имя" /> <br />
-                  <TextField id="standard-basic" label="Номер телефона" /> <br />
-                  <TextField id="standard-basic" label="Email" /> <br />
-                  <TextField id="standard-basic" label="Комментарий" /> <br />
-                  <div className={style.button}>
-                    <Button variant="contained" color="primary">
-                      Отправить </Button>
-                  </div>
-                </form>
-                
-              </div>
-            </Fade>
-          </Modal>
-        </div>
-      </div>
+    </div>
+    {open && 
+      <ModalPict 
+      open={open}
+      idRange={idRange}
+      handleClose={handleClose}
+      />}
     </YMaps >
   )
 }

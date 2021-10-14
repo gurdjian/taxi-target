@@ -28,20 +28,12 @@ function App() {
         <Navbar />
         <div style={{flexGrow: 1, display: 'flex', flexDirection: 'column'}}>
         <Switch>
-          <Route exact path="/">
-            <Main />
-          </Route>
-          <Route exact path="/karta">
-            <Karta />
-          </Route>
-          <Route exact path="/signin">
-            <SignIn />
-          </Route>
-          <Route exact path="/signup">
-            <SignUp />
-          </Route>
-          <Route exact path="/сabinet" component={PersonalCabinet} />
-          <Route exact path="/admin" component = {Admin}/>
+          <Route exact path="/" component={ Main } />
+          <Route exact path="/karta" component={ Karta }/>
+          <Route exact path="/signin" component={ SignIn } />
+          <Route exact path="/signup" component={ SignUp }/>
+          <Route exact path="/сabinet" component={ PersonalCabinet } />
+          <Route exact path="/admin" component = { Admin }/>
         </Switch>
         </div>
       </Router>

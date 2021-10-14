@@ -4,6 +4,7 @@ const initState = {
   cabinet: {},
   range: [],
   advertisement: [],
+  allads: [],
 }
 
 

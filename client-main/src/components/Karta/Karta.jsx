@@ -123,7 +123,20 @@ function Karta() {
   };
 
   let yymap
-
+  function chooseColor(price) {
+    switch (price) {
+      case 100:
+        return '#e4272750';
+      case 95:
+        return '#e4a12770'
+      case 90:
+        return '#e4cc2770'    
+        case 50:
+        return '#9ce42770'        
+      default:
+        return '#27d3e470'
+    }
+  }
   return (
     <YMaps
       query={{
@@ -143,7 +156,7 @@ function Karta() {
               }
             }}
             modules={["templateLayoutFactory", "layout.ImageWithContent", "geolocation", "geocode"]}
-            defaultState={{ center: [55.75, 37.57], zoom: 10 }}
+            defaultState={{ center: [55.75, 37.57], zoom: 11 }}
             onClick={(event) => {
               try {
                 if (event?.get("coords")) {
@@ -160,7 +173,8 @@ function Karta() {
                   geometry={[JSON.parse(el.zone_geo)]}
                   onClick={handleOpen}
                   options={{
-                    fillColor: '#ffff0022',
+                    fillColor: chooseColor(el.price),
+                    // fillColor: '#ffff0022',
                     strokeColor: '#3caa3c88',
                     strokeWidth: 2,
 
@@ -174,34 +188,6 @@ function Karta() {
                 />
               })}
             </>
-
-            {/* <Polygon
-              data-rh="Add top-level category"
-              geometry={[[
-                [55.75, 37.80],
-                [55.80, 37.90],
-                [55.75, 38.00],
-                [55.70, 38.00],
-                [55.70, 37.80]
-              ]]
-              }
-              onClick={handleOpen}
-              options={{
-                fillColor: '#ffff0022',
-                strokeColor: '#3caa3c88',
-                strokeWidth: 7,
-
-              }}
-              properties={{
-                balloonContent: 'Это балун',
-                hintContent: ' Sexy '
-              }}
-              modules={
-                ['geoObject.addon.balloon', 'geoObject.addon.hint']
-              }
-            >
-            </Polygon>  */}
-
           </Map>
         </div>
 
@@ -227,40 +213,16 @@ function Karta() {
                   <TextField id="standard-basic" label="Имя" /> <br />
                   <TextField id="standard-basic" label="Номер телефона" /> <br />
                   <TextField id="standard-basic" label="Email" /> <br />
-                  <TextField id="standard-basic" label="Комментарий" /> <br />
+                  {/* <TextField id="standard-basic" label="Комментарий" /> <br /> */}
                   <div className={style.button}>
                     <Button variant="contained" color="primary">
                       Отправить </Button>
                   </div>
                 </form>
-                {/* <h2 id="spring-modal-title">Vyberite chtoto</h2> */}
-                {/* <p id="spring-modal-description">react-spring animates me.</p> */}
-                {/* <label>
-                    eto knopka ebanaya dlya faila
-    <input type="file" style={{ visibility: 'hidden' }} />
-                  </label>
-
-                  <div className={classes.app}>
-                    {drag
-                      ? <div
-                        onDragStart={e => dragStartHandler(e)}
-                        onDragLeave={e => dragLeaveHandler(e)}
-                        onDragOver={e => dragStartHandler(e)}
-                        onDrop={e => onDropHandler(e)}
-                        className={classes.drop_area}>Отпустите файлы, чтобы загрузить их</div>
-                      : <div
-                        onDragStart={e => dragStartHandler(e)}
-                        onDragLeave={e => dragLeaveHandler(e)}
-                        onDragOver={e => dragStartHandler(e)}
-                      >Перетащите файлы, чтобы загрузить их</div>}
-                  </div> */}
               </div>
             </Fade>
           </Modal>
-      
-
       </div>
-
     </YMaps >
   )
 }
