@@ -82,5 +82,5 @@ app.use('/deposits', depositsUserRouter);
 app.use('/admin', adminRouter)
 
 app.listen(PORT, () => {
-  console.log('Server-main start on port', PORT);
+  console.log(`Server-main start on ${process.env.IP}:${PORT}`);
 });
