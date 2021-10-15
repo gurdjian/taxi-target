@@ -44,7 +44,7 @@ function Navbar() {
               </Link>
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Taxi-target
+              <Link to={'/admin'}>Taxi-target</Link>
           </Typography>
             {/* <Link className={style.super_puper_link} to="сabinet"><Button color="inherit">Личный кабинет</Button></Link> */}
             <Link className={style.super_puper_link} to="karta"><Button color="inherit">Карта</Button></Link>
