@@ -6,7 +6,7 @@ module.exports = {
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < rangesId.length; i++) {
       arrToDb.push({
-        id: i,
+        id: i + 1,
         range_id: rangesId[i],
         advertisement_id: advertisementId[i],
       });
