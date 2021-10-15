@@ -79,7 +79,7 @@ function Main() {
                 <li className={style.li}> <img src={accum} alt="accum" className={ style.logo }/>Выходные данные, с которыми удобно работать</li>
               </ul>
               </SwiperSlide>
-              <SwiperSlide>
+              {/* <SwiperSlide>
     
               <h2 className={style.title}>Стек технологий на Frontend</h2>
               <ul>
@@ -101,7 +101,7 @@ function Main() {
                 <li className={style.lisetck}> <img src={node} alt="node" className={ style.logostek }/> Кросс-платформенная среда исполнения JavaScript обеспечивающая стабильную работу сервера с неблокирующим входом/выходом запросов. </li>
                 <li className={style.lisetck}> <img src={psql} alt="psql" className={style.logostek} /> Реляционная СУБД для хранения основных данных в системе</li>
               </ul>
-              </SwiperSlide>
+              </SwiperSlide> */}
         </Swiper>
         </div>
         <Link to="/Karta" className='button'>Поехали!</Link>

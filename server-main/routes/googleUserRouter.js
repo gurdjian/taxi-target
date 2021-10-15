@@ -19,6 +19,7 @@ router.get('/signIn',
 )
 
 router.get('/signIn/callback',
+//  ()=>{console.log( console.log(process.env.ORIGIN));},
   passport.authenticate('google', {
     failureRedirect: '/signIn',
     successRedirect: `${process.env.ORIGIN}`,
@@ -38,6 +39,7 @@ router.get('/checkAuth', async (req, res) => {
     try {
       const profile = req.user;
       const findUser = await User.findOne({ where: { email: profile.emails[0].value } });
+      console.log(findUser);
       if (profile.emails[0].value === findUser?.email) {
         return res.json(findUser);
       }
