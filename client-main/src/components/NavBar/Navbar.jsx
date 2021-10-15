@@ -38,11 +38,11 @@ function Navbar() {
       <AppBar position="static">
         {user &&
           <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <Link to="/" className={style.super_puper_link}>
-                <LocalTaxiIcon />
-              </Link>
-            </IconButton>
+            <Link to="/" className={style.super_puper_link}>
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                  <LocalTaxiIcon />
+              </IconButton>
+            </Link>
             <Typography variant="h6" className={classes.title}>
               <Link to={'/admin'}>Taxi-target</Link>
           </Typography>

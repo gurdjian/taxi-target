@@ -22,7 +22,9 @@
 .title{
   margin: 0;
   font-size: 65px;
-  margin-bottom: 65px;
+  margin: 10px 0 30px;
+  line-height: 70px;
+  
 }
 
 .text{
@@ -65,4 +67,32 @@
   padding: 150px 40px 40px 40px;
 }
 
+.svg {
+  height: 20px;
+  width: 10px;
+}
+
+.li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+.logo {
+  width: 30px;
+  margin: 0 20px 0 0;
+
+}
+.logostek {
+  width: 60px;
+  margin: 0 5px 0 0;
+  
+}
+
+.lisetck {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 120px;
+}
 /* backgroundImage: 'url(/img/taxi.png)', backgroundSize: '100% auto', backgroundRepeat: 'no-repeat' */

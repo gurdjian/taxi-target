@@ -90,29 +90,19 @@ function Karta() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // const [drag, setDrag] = useState(false);
-
-  // const dragStartHandler = (e) => {
-  //   e.preventDefault();
-  //   setDrag(true);
-  // }
-
-  // const dragLeaveHandler = (e) => {
-  //   e.preventDefault();
-  //   setDrag(false);
-  // }
-
-  // const onDropHandler = (e) => {
-  //   e.preventDefault();
-  //   let files = [...e.dataTransfer.files]
-  //   console.log(files);
-  //   const formData = new FormData();
-  //   formData.append('file', files[0])
-  //   setDrag(false)
-  // }
+ 
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [aplOpen, setaplOpen] = React.useState(false);
+
+  const hendlerAplOpen = () => {
+    setaplOpen(true);
+  };
+
+  const hendlerAplClose = () => {
+    setaplOpen(false);
+  }
 
   const handleOpen = () => {
     setOpen(true);
@@ -215,13 +205,36 @@ function Karta() {
                   <TextField id="standard-basic" label="Email" /> <br />
                   {/* <TextField id="standard-basic" label="Комментарий" /> <br /> */}
                   <div className={style.button}>
-                    <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" onClick={() => {
+                    handleClose();
+                    hendlerAplOpen();
+                  }}>
                       Отправить </Button>
                   </div>
                 </form>
+           
               </div>
             </Fade>
           </Modal>
+          <Modal
+            aria-labelledby="spring-modal-title"
+            aria-describedby="spring-modal-description"
+            className={classes.modal}
+            open={aplOpen}
+            onClose={hendlerAplClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={aplOpen}>
+              <div className={classes.paper}>
+                <h2>Ваша заявка успешно отправленна </h2>
+              </div>
+            </Fade>
+          </Modal>
+
       </div>
     </YMaps >
   )
