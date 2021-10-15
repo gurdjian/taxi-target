@@ -113,7 +113,20 @@ function Karta() {
   };
 
   let yymap
-
+  function chooseColor(price) {
+    switch (price) {
+      case 100:
+        return '#e4272750';
+      case 95:
+        return '#e4a12770'
+      case 90:
+        return '#e4cc2770'    
+        case 50:
+        return '#9ce42770'        
+      default:
+        return '#27d3e470'
+    }
+  }
   return (
     <YMaps
       query={{
@@ -133,7 +146,7 @@ function Karta() {
               }
             }}
             modules={["templateLayoutFactory", "layout.ImageWithContent", "geolocation", "geocode"]}
-            defaultState={{ center: [55.75, 37.57], zoom: 10 }}
+            defaultState={{ center: [55.75, 37.57], zoom: 11 }}
             onClick={(event) => {
               try {
                 if (event?.get("coords")) {
@@ -150,7 +163,8 @@ function Karta() {
                   geometry={[JSON.parse(el.zone_geo)]}
                   onClick={handleOpen}
                   options={{
-                    fillColor: '#ffff0022',
+                    fillColor: chooseColor(el.price),
+                    // fillColor: '#ffff0022',
                     strokeColor: '#3caa3c88',
                     strokeWidth: 2,
 
@@ -164,9 +178,6 @@ function Karta() {
                 />
               })}
             </>
-
-            
-
           </Map>
         </div>
 
@@ -192,7 +203,7 @@ function Karta() {
                   <TextField id="standard-basic" label="Имя" /> <br />
                   <TextField id="standard-basic" label="Номер телефона" /> <br />
                   <TextField id="standard-basic" label="Email" /> <br />
-                  <TextField id="standard-basic" label="Комментарий" /> <br />
+                  {/* <TextField id="standard-basic" label="Комментарий" /> <br /> */}
                   <div className={style.button}>
                   <Button variant="contained" color="primary" onClick={() => {
                     handleClose();
@@ -225,7 +236,6 @@ function Karta() {
           </Modal>
 
       </div>
-
     </YMaps >
   )
 }

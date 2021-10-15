@@ -4,17 +4,36 @@ module.exports = {
   up: async (queryInterface) => {
     const { ads } = JSON.parse(fs.readFileSync(`${process.env.PWD}/db/db.json`, 'utf-8'));
 
-    const arrToDb = [];
+    let arrToDb = [
+      'danila.png',
+      'dasha.png',
+      'enduro.png',
+      'gosha.png',
+      'nogti.png',
+      'pizza.png',
+      'rolf.png',
+      'savel.png',
+      'sem.png',
+      'anton.png',
+      'fake.jpg',
+    ];
+    arrToDb = arrToDb.map((elem, index) => ({
+      id: index + 1,
+      user_id: 2,
+      url: `/img/${elem}`,
+      time: 5,
+    }));
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < ads.length; i++) {
       const { id, url, duration } = ads[i];
       arrToDb.push({
-        id,
+        id: +id + 10,
         user_id: 2,
         url,
         time: duration,
       });
     }
+    console.log(arrToDb);
     await queryInterface.bulkInsert('Advertisements', arrToDb, {});
   },
 

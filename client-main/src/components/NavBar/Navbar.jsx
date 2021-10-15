@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import style from './navbar.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,8 +9,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import LocalTaxiIcon from '@material-ui/icons/LocalTaxi';
 import { Link, useHistory } from "react-router-dom"
-import { googleCheckAuth, logoutUser } from '../../redux/actions/userAction';
-
+import { logoutUser } from '../../redux/actions/userAction';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -32,16 +31,6 @@ function Navbar() {
     history.push('/')
   }
 
-//   function deleteAllCookies() {
-//     var cookies = document.cookie.split(";");
-
-//     for (var i = 0; i < cookies.length; i++) {
-//         var cookie = cookies[i];
-//         var eqPos = cookie.indexOf("=");
-//         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-//         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-//     }
-// }
   const classes = useStyles();
 
   return (
@@ -57,7 +46,7 @@ function Navbar() {
             <Typography variant="h6" className={classes.title}>
               Taxi-target
           </Typography>
-            <Link className={style.super_puper_link} to="сabinet"><Button color="inherit">Личный кабинет</Button></Link>
+            {/* <Link className={style.super_puper_link} to="сabinet"><Button color="inherit">Личный кабинет</Button></Link> */}
             <Link className={style.super_puper_link} to="karta"><Button color="inherit">Карта</Button></Link>
             <Button onClick={logoutHandler} color="inherit">Выйти</Button>
           </Toolbar>
