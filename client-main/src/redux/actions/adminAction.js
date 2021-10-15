@@ -12,8 +12,8 @@ export const getAds = () => async (dispatch) => {
   dispatch({ type: GET_ADS, payload: response.data })
 }
 
-export const updateRangeAction = (images) => async (dispatch) => {
-  await axios.post(`${url}/admin/update`, {images});
+export const updateRangeAction = (images, rangeId) => async (dispatch) => {
+  await axios.post(`${url}/admin/update`, {images, rangeId});
   dispatch(getAllAdvertisement())
   dispatch(getAds())
 }

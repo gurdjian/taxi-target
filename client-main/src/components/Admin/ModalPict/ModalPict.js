@@ -124,7 +124,7 @@ function ModalPict({open, idRange, handleClose}) {
   useEffect(()=> {
     const arr = [];
     ads.forEach(element => {
-      arr.push({id: element.id, checked: true})
+      arr.push({advertisement_id: element.id, range_id: idRange})
     });
     setImages(arr);
   }, [])
@@ -138,14 +138,27 @@ function ModalPict({open, idRange, handleClose}) {
     e.preventDefault();
     // const images = Object.fromEntries( new FormData(e.target));
     console.log(images);
-    dispatch(updateRangeAction(images));
+    dispatch(updateRangeAction(images, idRange));
   }
-  function uncheck(id) {
-    setImages( prev => prev.filter( el => el.id !== id) );
+  function switchHandler(id, checked) {
+    console.log(id, checked);
+    if (checked) {
+      setImages( prev => {
+        return [...prev, {advertisement_id: id, range_id: idRange}]
+      });
+    } else {
+      setImages( prev => {
+        return prev.filter( elem => elem.advertisement_id !== id);
+      });
+    }
+
   }
-  function check(id) {
-    setImages( prev => [...prev].push({id, checked: true}));
-  }
+  // function check(id) {
+  //   setImages( prev => {
+      
+  //     return [...prev].push({id, checked: true})
+  //   });
+  // }
   const classes = useStyles();
   return (
           <Modal
@@ -171,7 +184,7 @@ function ModalPict({open, idRange, handleClose}) {
                      
                       return (
                         <label className={classes.imageListItem} key={index}>  
-                          <input className={classes.input} type="checkbox" onChange={() => uncheck(item.id)} name="images" defaultChecked value={item.id} /> 
+                          <input className={classes.input} type="checkbox" onChange={(e) => switchHandler(item.id, e.target.checked)} name="images" defaultChecked value={item.id} /> 
                           <img className={classes.image} src={item.url} alt={item.url}/> 
                         </label>
                       )
@@ -182,7 +195,7 @@ function ModalPict({open, idRange, handleClose}) {
                   <div className={classes.imageList}>
                     {allAds.map((item, index) => (
                       <label className={classes.imageListItem} key={index}>  
-                        <input className={classes.input} type="checkbox" onChange={() => check(item.id)} name="images"  value={item.id} /> 
+                        <input className={classes.input} type="checkbox" onChange={(e) => switchHandler(item.id, e.target.checked)} name="images"  value={item.id} /> 
                         <img className={classes.image} src={item.url} alt={item.url}/> 
                       </label>
                     ))}
